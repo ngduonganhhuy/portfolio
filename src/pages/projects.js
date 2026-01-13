@@ -11,7 +11,9 @@ import gonsa from "../../public/images/projects/gonsa.png";
 import lady from "../../public/images/projects/lady.png";
 import rpsgame from "../../public/images/projects/rpsgame.png";
 import winerydao from "../../public/images/projects/winerydao.png";
-import ykkt from "../../public/images/projects/ykkt.png";
+import lendme from "../../public/images/projects/lendme.png";
+import danet from "../../public/images/projects/danet.jpg";
+import dshorts from "../../public/images/projects/dshorts.png";
 
 const FramerImage = motion(Image);
 
@@ -31,7 +33,7 @@ const FuturedProject = ({ type, title, summary, img, link, github }) => {
         <FramerImage
           src={img}
           alt={title}
-          className="w-full h-auto "
+          className="w-full h-auto"
           whileHover={{ scale: 1.05 }}
           transition={{ duration: 0.2 }}
           priority
@@ -85,17 +87,18 @@ const Project = ({ title, type, img, link, github }) => {
       <Link
         href={link}
         target="_blank"
-        className="w-full cursor-pointer overflow-hidden rounded-lg drop-shadow-sm h-80"
+        className="w-full cursor-pointer overflow-hidden rounded-lg drop-shadow-sm h-100"
       >
-        <FramerImage
-          src={img}
-          alt={title}
-          className="w-full h-auto shadow-2xl shadow-dark object-cover md:h-80"
-          whileHover={{ scale: 1.05 }}
-          transition={{ duration: 0.2 }}
-          priority
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
-        />
+        <div className="relative w-full aspect-[16/9] overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-800">
+          <FramerImage
+            src={img}
+            alt={title}
+            fill
+            className="object-contain"
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.3 }}
+          />
+        </div>
       </Link>
 
       <div className="w-full flex flex-col items-start justify-between ">
@@ -145,13 +148,33 @@ const projects = () => {
           <div className="grid grid-cols-12 gap-24 gap-y-32 xl:gap-x-16 lg:gap-x-8 md:gap-y-24 sm:gap-x-0">
             <div className="col-span-12">
               <FuturedProject
-                title={"Yakult Khai Thác"}
+                title={"Lend Me"}
                 summary={
-                  "An staff’s app for converting from paper processes to app processes for easier task management."
+                  "Pawn shop management app."
                 }
-                link={"/"}
+                link={"https://app.lendme.vn/"}
                 type={"Featured Project"}
-                img={ykkt}
+                img={lendme}
+                github={"/"}
+              />
+            </div>
+            <div className="col-span-6 sm:col-span-12">
+              <Project
+                title={"Danet"}
+                link={
+                  "https://apps.apple.com/vn/app/danet/id1099577795?l=vi"
+                }
+                type={"Project"}
+                img={danet}
+                github={"/"}
+              />
+            </div>
+            <div className="col-span-6 sm:col-span-12">
+              <Project
+                title={"DShorts"}
+                link={"https://apps.apple.com/vn/app/apple-store/id1630656771"}
+                type={"Project"}
+                img={dshorts}
                 github={"/"}
               />
             </div>

@@ -11,13 +11,18 @@
     "export": "next export"
   },
   "dependencies": {
+    "@tailwindcss/typography": "^0.5.19",
     "autoprefixer": "^10.4.14",
     "eslint": "8.36.0",
     "eslint-config-next": "13.2.4",
     "framer-motion": "^10.6.0",
-    "next": "^13.2.4",
+    "gray-matter": "^4.0.3",
+    "next": "^16.1.1",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-markdown": "^10.1.0",
+    "rehype-highlight": "^7.0.2",
+    "remark-gfm": "^4.0.1"
   },
   "devDependencies": {
     "tailwindcss": "^3.3.2"

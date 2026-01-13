@@ -52,11 +52,15 @@ const about = () => {
               </h2>
 
               <p className="font-medium">
-                As a highly motivated and skilled Mobile Developer with over 2
-                years of experience, I am excited to embark on a Junior to
-                Middle Mobile role that will enable me to expand my knowledge,
-                enhance my technical skills, and collaborate effectively with a
-                team of seasoned professionals.
+              As a passionate Mobile Developer
+              with four years of Flutter experience, I
+              seek a Middle - Senior role to further
+              refine my skills, tackle new challenges,
+              and contribute to impactful projects.
+              My strong problem-solving abilities
+              and commitment to clean, efficient
+              code make me a valuable asset to
+              any team.
               </p>
 
               <p className="my-4 font-medium">
@@ -92,7 +96,7 @@ const about = () => {
 
               <div className="flex flex-col items-end justify-center xl:items-center">
                 <span className="inline-block text-7xl font-bold  md:text-6xl sm:text-5xl xs:text-4xl ">
-                  <AnimatedNumbers val={6} />+
+                  <AnimatedNumbers val={10} />+
                 </span>
                 <h2 className="text-xl font-medium capitalize text-dark/75 dark:text-light/75 xl:text-center md:text-lg sm:text-base xs:text-sm">
                   Projects Completed
@@ -101,7 +105,7 @@ const about = () => {
 
               <div className="flex flex-col items-end justify-center xl:items-center">
                 <span className="inline-block text-7xl font-bold  md:text-6xl sm:text-5xl xs:text-4xl">
-                  <AnimatedNumbers val={2} />+
+                  <AnimatedNumbers val={4} />+
                 </span>
                 <h2 className="text-xl font-medium capitalize text-dark/75 dark:text-light/75 xl:text-center md:text-lg sm:text-base xs:text-sm">
                   Years Of Experience

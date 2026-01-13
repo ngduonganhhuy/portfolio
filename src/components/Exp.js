@@ -80,12 +80,24 @@ const Exp = () => {
             position="Mobile Developer"
             company="Runsystem"
             companyLink={"https://runsystem.net/vi/"}
-            time="September 2022 - Present"
+            time="September 2022 - April 2024"
             address="Tan Binh, TP.HCM"
             work={`● Define user-story according to BA’s arrangement
             ● Provide solutions to support other members
             ●	Design according to defined user-story, develop app according this design on Adobe XD, Figma
             ●	Configuration for building app on Android and IOS for testing over third application (Testflight, Diawi)
+            ●	Deploy app to CHPlay and AppStore`}
+          />
+           <Details
+            position="Mobile Developer"
+            company="Danet"
+            companyLink={"https://danet.vn/"}
+            time="April 2024 - Present"
+            address="Sala, TP.HCM"
+            work={`● Improve UX, Optimize product (Danet)
+            ● Support content team
+            ●	Design according to defined user-story, develop app according this design on Figma
+            ●	Build new product (DShorts)
             ●	Deploy app to CHPlay and AppStore`}
           />
         </ul>
