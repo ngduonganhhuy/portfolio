@@ -3,6 +3,7 @@ title: Best practices writing Clean Code with Flutter 💻
 date: "2023-10-30"
 time: 9 min read
 cover: /images/articles/best_practice_writing_clean_code_with_flutter.webp
+summary: Learn practical tips for writing clean, maintainable, and scalable Flutter code — from meaningful variable names to proper widget decomposition and architecture patterns.
 tags:
   - Flutter
   - Clean Code

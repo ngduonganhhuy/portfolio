@@ -1,0 +1,13 @@
+export const SKILLS = [
+  { name: "HTML", x: "-20vw", y: "5vw", url: "https://vi.wikipedia.org/wiki/HTML" },
+  { name: "CSS", x: "-5vw", y: "-10vw", url: "https://vi.wikipedia.org/wiki/CSS" },
+  { name: "Javascript", x: "20vw", y: "6vw", url: "https://vi.wikipedia.org/wiki/JavaScript" },
+  { name: "ReactJS", x: "-40vw", y: "-12vw", url: "https://react.dev/" },
+  { name: "ReactNative", x: "14vw", y: "20vw", url: "https://reactnative.dev/" },
+  { name: "MySQL", x: "2vw", y: "-20vw", url: "https://www.mysql.com/" },
+  { name: "MongoDB", x: "10vw", y: "-10vw", url: "https://www.mongodb.com/" },
+  { name: "NodeJS", x: "-15vw", y: "-20vw", url: "https://nodejs.org/en" },
+  { name: "Dart", x: "-30vw", y: "12vw", url: "https://dart.dev/" },
+  { name: "Flutter", x: "0vw", y: "12vw", url: "https://flutter.dev/" },
+  { name: "SwiftUI/UIKit", x: "-30vw", y: "20vw", url: "https://developer.apple.com/xcode/swiftui/" },
+];

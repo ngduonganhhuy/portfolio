@@ -1,88 +1,70 @@
-<p align="center">
-  <img src="https://capsule-render.vercel.app/api?text=Holmes!🤗&animation=fadeIn&type=waving&color=gradient&height=100"/>
-</p>
-<p>👨🏻‍💻  A Little Bit About Me and My Interests</p>
-
-
-
-## 💼 Technical Skills
-![Dart](https://img.shields.io/badge/dart-%230175C2.svg?style=for-the-badge&logo=dart&logoColor=white)
-![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
-## Frameworks
-![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white)
-![Swift](https://img.shields.io/badge/swift-F54A2A?style=for-the-badge&logo=swift&logoColor=white)
-![React Native](https://img.shields.io/badge/react_native-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
-![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
-![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
-
-## 💻 My Daily.dev
-<p align="center">
-  <a href="https://app.daily.dev/bin01012000"><img src="https://api.daily.dev/devcards/96f1f10b4a604a5081a0fe2d529f4cb6.png?r=wsu" width="400" alt="Holmes's Dev Card"/></a>
-</p>
-
-## Today's Weather
 <div align="center">
 
-`Saigon, Vietnam - 26/10/2023`
+# Hi, I'm Huy 👋
 
-<img src="https://cdn.weatherapi.com/weather/64x64/day/176.png"/>
+**Mobile Developer · Software Engineer**
+Ho Chi Minh City, Vietnam
 
-Patchy rain possible
+[![Portfolio](https://img.shields.io/badge/Portfolio-holmes.id.vn-B63E96?style=flat-square&logo=safari&logoColor=white)](https://holmes.id.vn)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-ngduonganhhuy-0A66C2?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/ngduonganhhuy/)
+[![Email](https://img.shields.io/badge/Email-ngduonganhhuy@gmail.com-D14836?style=flat-square&logo=gmail&logoColor=white)](mailto:ngduonganhhuy@gmail.com)
 
 </div>
 
+---
 
-<table>
-    <tr>
-        <th>Hour</th>
-        <td>00:00</td><td>01:00</td><td>02:00</td><td>03:00</td><td>04:00</td><td>05:00</td><td>06:00</td><td>07:00</td><td>08:00</td><td>09:00</td><td>10:00</td><td>11:00</td><td>12:00</td><td>13:00</td><td>14:00</td><td>15:00</td><td>16:00</td><td>17:00</td><td>18:00</td><td>19:00</td><td>20:00</td><td>21:00</td><td>22:00</td><td>23:00</td>
-    </tr>
-    <tr>
-        <th>Weather</th>
-        <td><img src="https://cdn.weatherapi.com/weather/64x64/night/116.png"></img></td><td><img src="https://cdn.weatherapi.com/weather/64x64/night/116.png"></img></td><td><img src="https://cdn.weatherapi.com/weather/64x64/night/119.png"></img></td><td><img src="https://cdn.weatherapi.com/weather/64x64/night/119.png"></img></td><td><img src="https://cdn.weatherapi.com/weather/64x64/night/116.png"></img></td><td><img src="https://cdn.weatherapi.com/weather/64x64/night/116.png"></img></td><td><img src="https://cdn.weatherapi.com/weather/64x64/day/116.png"></img></td><td><img src="https://cdn.weatherapi.com/weather/64x64/day/116.png"></img></td><td><img src="https://cdn.weatherapi.com/weather/64x64/day/116.png"></img></td><td><img src="https://cdn.weatherapi.com/weather/64x64/day/116.png"></img></td><td><img src="https://cdn.weatherapi.com/weather/64x64/day/176.png"></img></td><td><img src="https://cdn.weatherapi.com/weather/64x64/day/176.png"></img></td><td><img src="https://cdn.weatherapi.com/weather/64x64/day/353.png"></img></td><td><img src="https://cdn.weatherapi.com/weather/64x64/day/353.png"></img></td><td><img src="https://cdn.weatherapi.com/weather/64x64/day/353.png"></img></td><td><img src="https://cdn.weatherapi.com/weather/64x64/day/353.png"></img></td><td><img src="https://cdn.weatherapi.com/weather/64x64/day/389.png"></img></td><td><img src="https://cdn.weatherapi.com/weather/64x64/day/176.png"></img></td><td><img src="https://cdn.weatherapi.com/weather/64x64/night/113.png"></img></td><td><img src="https://cdn.weatherapi.com/weather/64x64/night/113.png"></img></td><td><img src="https://cdn.weatherapi.com/weather/64x64/night/113.png"></img></td><td><img src="https://cdn.weatherapi.com/weather/64x64/night/176.png"></img></td><td><img src="https://cdn.weatherapi.com/weather/64x64/night/176.png"></img></td><td><img src="https://cdn.weatherapi.com/weather/64x64/night/176.png"></img></td>
-    </tr>
-    <tr>
-        <th>Condition</th>
-        <td width="200px">Partly cloudy</td><td width="200px">Partly cloudy</td><td width="200px">Cloudy</td><td width="200px">Cloudy</td><td width="200px">Partly cloudy</td><td width="200px">Partly cloudy</td><td width="200px">Partly cloudy</td><td width="200px">Partly cloudy</td><td width="200px">Partly cloudy</td><td width="200px">Partly cloudy</td><td width="200px">Patchy rain possible</td><td width="200px">Patchy rain possible</td><td width="200px">Light rain shower</td><td width="200px">Light rain shower</td><td width="200px">Light rain shower</td><td width="200px">Light rain shower</td><td width="200px">Moderate or heavy rain with thunder</td><td width="200px">Patchy rain possible</td><td width="200px">Clear</td><td width="200px">Clear</td><td width="200px">Clear</td><td width="200px">Patchy rain possible</td><td width="200px">Patchy rain possible</td><td width="200px">Patchy rain possible</td>
-    </tr>
-    <tr>
-        <th>Temperature</th>
-        <td>24.8 °C</td><td>24.7 °C</td><td>24.6 °C</td><td>24.5 °C</td><td>24.6 °C</td><td>24.4 °C</td><td>24.5 °C</td><td>25.9 °C</td><td>27.5 °C</td><td>29.2 °C</td><td>30.6 °C</td><td>31.8 °C</td><td>32.3 °C</td><td>30.7 °C</td><td>30.2 °C</td><td>30.2 °C</td><td>29 °C</td><td>28 °C</td><td>26.6 °C</td><td>26.2 °C</td><td>26 °C</td><td>25.8 °C</td><td>25.2 °C</td><td>25.1 °C</td>
-    </tr>
-    <tr>
-        <th>Wind</th>
-        <td>6.8 kph</td><td>6.1 kph</td><td>5.4 kph</td><td>5 kph</td><td>4 kph</td><td>4.3 kph</td><td>4.7 kph</td><td>5.4 kph</td><td>6.5 kph</td><td>7.6 kph</td><td>7.2 kph</td><td>7.6 kph</td><td>8.3 kph</td><td>11.9 kph</td><td>12.2 kph</td><td>11.9 kph</td><td>15.1 kph</td><td>13 kph</td><td>10.8 kph</td><td>9.4 kph</td><td>8.3 kph</td><td>7.6 kph</td><td>6.8 kph</td><td>6.8 kph</td>
-    </tr>
-</table>
+I'm a Software Engineer with 5+ years building mobile applications for Android and iOS. My main focus is **Flutter** — from architecture decisions to store deployments. I care about clean code, smooth UX, and maintainable systems.
 
+Currently working at **FPT Software**, where I work on Long Chau pharmacy app — improving UX, tracking events, and building marketing features.
 
-## Weather For Next 3 days
+---
 
+## 🛠 Tech Stack
 
-<table>
-    <tr>
-        <th>Date</th>
-        <td>26/10/2023</td><td>27/10/2023</td><td>28/10/2023</td>
-    </tr>
-    <tr>
-        <th>Weather</th>
-        <td><img src="https://cdn.weatherapi.com/weather/64x64/day/176.png"/></td><td><img src="https://cdn.weatherapi.com/weather/64x64/day/176.png"/></td><td><img src="https://cdn.weatherapi.com/weather/64x64/day/176.png"/></td>
-    </tr>
-    <tr>
-        <th>Condition</th>
-        <td width="200px">Patchy rain possible</td><td width="200px">Patchy rain possible</td><td width="200px">Patchy rain possible</td>
-    </tr>
-    <tr>
-        <th>Temperature</th>
-        <td>24.4 -  32.4 °C</td><td>24.3 -  32.8 °C</td><td>24.8 -  31.9 °C</td>
-    </tr>
-    <tr>
-        <th>Wind</th>
-        <td>13 kph</td><td>9.7 kph</td><td>11.2 kph</td>
-    </tr>
-</table>
+**Mobile**
+![Flutter](https://img.shields.io/badge/Flutter-02569B?style=flat-square&logo=flutter&logoColor=white)
+![Dart](https://img.shields.io/badge/Dart-0175C2?style=flat-square&logo=dart&logoColor=white)
+![React Native](https://img.shields.io/badge/React_Native-20232A?style=flat-square&logo=react&logoColor=61DAFB)
+![Swift](https://img.shields.io/badge/Swift-F54A2A?style=flat-square&logo=swift&logoColor=white)
 
+**Web**
+![React](https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB)
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=next.js&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat-square&logo=typescript&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=node.js&logoColor=white)
 
-*Updated at: 2023-10-26T09:23:54Z*
+**Tools**
+![Figma](https://img.shields.io/badge/Figma-F24E1E?style=flat-square&logo=figma&logoColor=white)
+![Git](https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white)
+![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=flat-square&logo=firebase&logoColor=black)
+![AWS](https://img.shields.io/badge/AWS-232F3E?style=flat-square&logo=amazon-aws&logoColor=white)
+
+---
+
+## 📱 Selected Projects
+
+| Project | Description | Platform |
+|---------|-------------|----------|
+| [Lend Me](https://app.lendme.vn) | Pawn shop management app | Flutter |
+| [Danet](https://apps.apple.com/vn/app/danet/id1099577795) | Content platform | Flutter |
+| [DShorts](https://apps.apple.com/vn/app/dshorts-drama-shorts/id6503342186) | Short drama streaming | Flutter |
+| [SalonBookly](https://apps.apple.com/vn/app/salonbookly-staff/id1630657030) | Salon booking platform | Flutter |
+
+---
+
+## 📊 GitHub Stats
+
+<div align="center">
+
+![GitHub Stats](https://github-readme-stats.vercel.app/api?username=ngduonganhhuy&show_icons=true&theme=radical&hide_border=true&count_private=true)
+![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=ngduonganhhuy&layout=compact&theme=radical&hide_border=true)
+
+</div>
+
+---
+
+<div align="center">
+
+*Open to senior mobile engineer roles and interesting Flutter projects.*
+
+</div>

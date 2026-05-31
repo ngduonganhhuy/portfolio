@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
-import AnimText from "./AnimText";
+import LogoText from "./LogoText";
 
 const MotionLink = motion(Link);
 
@@ -22,7 +22,7 @@ const Logo = () => {
           transition: { duration: 1, repeat: Infinity },
         }}
       >
-        <AnimText delay={1} />
+        <LogoText delay={1} />
       </MotionLink>
     </div>
   );
