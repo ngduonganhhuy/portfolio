@@ -8,6 +8,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 
 const DogCursor = dynamic(() => import("@/components/DogCursor"), { ssr: false });
+const IntroOverlay = dynamic(() => import("@/components/IntroOverlay"), { ssr: false });
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -25,6 +26,7 @@ export default function App({ Component, pageProps }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={`${montserrat.variable} font-mont bg-light dark:bg-dark w-full min-h-screen`}>
+        <IntroOverlay />
         <DogCursor />
         <NavBar />
         <AnimatePresence mode="wait">

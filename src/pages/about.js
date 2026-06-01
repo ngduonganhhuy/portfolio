@@ -39,13 +39,6 @@ const STATS = [
 ];
 
 const About = () => {
-  useEffect(() => {
-    document.documentElement.style.scrollSnapType = "y mandatory";
-    return () => {
-      document.documentElement.style.scrollSnapType = "";
-    };
-  }, []);
-
   return (
     <>
       <Head>
@@ -93,9 +86,8 @@ const About = () => {
           <ScrollReveal
             variant="fadeUp"
             delay={0.1}
-            className="w-full col-span-4 relative h-max rounded-2xl border-2 border-solid border-dark bg-light p-8 dark:bg-dark dark:border-light xl:col-span-4 md:order-1 md:col-span-12"
+            className="w-full col-span-4 relative h-max rounded-2xl border-2 border-solid border-dark bg-light p-8 dark:bg-dark dark:border-light xl:col-span-4 md:order-1 md:col-span-12 shadow-[-8px_8px_0px_0px_#333333] dark:shadow-[-8px_8px_0px_0px_#F2E7D5]"
           >
-            <div className="absolute top-0 -right-3 -z-10 w-[102%] h-[103%] rounded-[2rem] bg-dark dark:bg-light" />
             <Image
               src={profilePic}
               alt="Holmes"

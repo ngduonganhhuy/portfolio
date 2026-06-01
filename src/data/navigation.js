@@ -3,6 +3,7 @@ export const NAV_LINKS = [
   { href: "/about", title: "About" },
   { href: "/projects", title: "Projects" },
   { href: "/articles", title: "Articles" },
+  { href: "/extensions", title: "Extensions" },
 ];
 
 export const SOCIAL_LINKS = [

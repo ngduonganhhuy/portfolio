@@ -71,8 +71,7 @@ const ArticleListItem = ({ cover, title, date, slug }) => {
 
 const FeaturedArticle = ({ cover, title, time, summary, slug }) => {
   return (
-    <li className="relative col-span-1 w-full p-4 bg-light border border-solid border-dark rounded-2xl dark:bg-dark dark:border-light">
-      <div className="absolute top-0 -right-3 -z-10 w-[101%] h-[103%] rounded-[2.5rem] bg-dark rounded-br-3xl" />
+    <li className="relative col-span-1 w-full p-4 bg-light border border-solid border-dark rounded-2xl dark:bg-dark dark:border-light shadow-[8px_8px_0px_0px_#333333] dark:shadow-[8px_8px_0px_0px_#F2E7D5]">
       <Link
         href={`/articles/${slug}`}
         className="w-full inline-block cursor-pointer overflow-hidden rounded-lg"

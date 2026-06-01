@@ -20,28 +20,28 @@ module.exports = {
       },
       backgroundImage: {
         circularLight:
-          "repeating-radial-gradient(rgba(0,0,0,0.4) 2px,#F2E7D5 5px,#F2E7D5 100px)",
+          "repeating-radial-gradient(rgba(0,0,0,0.55) 2px,rgba(0,0,0,0.15) 5px,rgba(0,0,0,0) 8px,#F2E7D5 10px,#F2E7D5 75px)",
 
         circularDark:
-          "repeating-radial-gradient(rgba(255,255,255,0.5) 2px,#333333 8px,#333333 100px)",
+          "repeating-radial-gradient(rgba(255,255,255,0.85) 2px,rgba(255,255,255,0.25) 5px,rgba(255,255,255,0) 8px,#333333 10px,#333333 75px)",
 
         circularLightLg:
-          "repeating-radial-gradient(rgba(0,0,0,0.4) 2px,#F2E7D5 5px,#F2E7D5 80px)",
+          "repeating-radial-gradient(rgba(0,0,0,0.55) 2px,rgba(0,0,0,0.15) 5px,rgba(0,0,0,0) 8px,#F2E7D5 10px,#F2E7D5 60px)",
 
         circularDarkLg:
-          "repeating-radial-gradient(rgba(255,255,255,0.5) 2px,#333333 8px,#333333 80px)",
+          "repeating-radial-gradient(rgba(255,255,255,0.85) 2px,rgba(255,255,255,0.25) 5px,rgba(255,255,255,0) 8px,#333333 10px,#333333 60px)",
 
         circularLightMd:
-          "repeating-radial-gradient(rgba(0,0,0,0.4) 2px,#F2E7D5 5px,#F2E7D5 60px)",
+          "repeating-radial-gradient(rgba(0,0,0,0.55) 2px,rgba(0,0,0,0.15) 5px,rgba(0,0,0,0) 8px,#F2E7D5 10px,#F2E7D5 50px)",
 
         circularDarkMd:
-          "repeating-radial-gradient(rgba(255,255,255,0.5) 2px,#333333 8px,#333333 60px)",
+          "repeating-radial-gradient(rgba(255,255,255,0.85) 2px,rgba(255,255,255,0.25) 5px,rgba(255,255,255,0) 8px,#333333 10px,#333333 50px)",
 
         circularLightSm:
-          "repeating-radial-gradient(rgba(0,0,0,0.4) 2px,#F2E7D5 5px,#F2E7D5 40px)",
+          "repeating-radial-gradient(rgba(0,0,0,0.55) 2px,rgba(0,0,0,0.15) 4px,rgba(0,0,0,0) 6px,#F2E7D5 8px,#F2E7D5 38px)",
 
         circularDarkSm:
-          "repeating-radial-gradient(rgba(255,255,255,0.5) 2px,#333333 8px,#333333 40px)",
+          "repeating-radial-gradient(rgba(255,255,255,0.85) 2px,rgba(255,255,255,0.25) 4px,rgba(255,255,255,0) 6px,#333333 8px,#333333 38px)",
       },
     },
     screens: {

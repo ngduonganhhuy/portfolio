@@ -31,23 +31,19 @@ const CustomLink = ({ href, title, className = "" }) => {
 
 const CustomMobileLink = ({ href, title, className = "", toggle }) => {
   const router = useRouter();
+  const isActive = router.asPath === href;
   const handleClick = () => {
     toggle();
     router.push(href);
   };
   return (
     <button
-      className={`${className} relative group text-light dark:text-dark my-2`}
+      className={`${className} relative group text-left py-3 px-2 text-lg font-medium w-full border-b border-dark/10 dark:border-light/10 last:border-0
+        ${isActive ? "text-primary dark:text-primaryDark" : "text-dark dark:text-light"}
+        hover:text-primary dark:hover:text-primaryDark transition-colors duration-200`}
       onClick={handleClick}
     >
       {title}
-      <span
-        className={`h-[1px] inline-block bg-light absolute left-0 -bottom-0.5 group-hover:w-full transition-[width] ease duration-300 ${
-          router.asPath === href ? "w-full" : "w-0"
-        } dark:bg-dark`}
-      >
-        &nbsp;
-      </span>
     </button>
   );
 };
@@ -89,11 +85,13 @@ const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen((prev) => !prev);
+  const close = () => setIsOpen(false);
 
   return (
-    <header className="w-full px-32 py-8 font-medium flex items-center justify-between dark:text-light sticky top-0 z-10 bg-light dark:bg-dark lg:px-16 md:px-12 sm:px-8">
+    <header className="w-full px-32 py-8 font-medium flex items-center justify-between dark:text-light bg-light dark:bg-dark lg:px-16 md:px-12 sm:px-8">
+      {/* Hamburger — mobile only */}
       <button
-        className="flex-col justify-center items-center hidden lg:flex"
+        className="flex-col justify-center items-center hidden lg:flex z-50 relative"
         onClick={toggle}
         aria-label="Toggle menu"
       >
@@ -102,6 +100,7 @@ const NavBar = () => {
         <span className={`bg-dark dark:bg-light block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm ${isOpen ? "-rotate-45 -translate-y-1" : "translate-y-0.5"}`} />
       </button>
 
+      {/* Desktop nav */}
       <div className="w-full flex justify-between items-center lg:hidden">
         <nav>
           {NAV_LINKS.map(({ href, title }, i) => (
@@ -119,22 +118,33 @@ const NavBar = () => {
         </div>
       </div>
 
+      {/* Mobile slide-down menu */}
       {isOpen && (
-        <motion.div
-          initial={{ scale: 0, opacity: 0, x: "-50%", y: "-50%" }}
-          animate={{ scale: 1, opacity: 1 }}
-          className="min-w-[70vw] flex flex-col justify-between z-30 items-center fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-dark/90 dark:bg-light/75 rounded-lg backdrop-blur-md py-32"
-        >
-          <nav className="flex items-center flex-col justify-center">
-            {NAV_LINKS.map(({ href, title }) => (
-              <CustomMobileLink key={href} href={href} title={title} toggle={toggle} />
-            ))}
-          </nav>
-          <div className="flex items-center justify-center flex-wrap mt-2 gap-1">
-            <SocialNav iconClassName="w-6 sm:mx-1" />
-            <ThemeToggle mode={mode} setMode={setMode} className="ml-3" />
-          </div>
-        </motion.div>
+        <>
+          {/* Backdrop */}
+          <div
+            className="fixed inset-0 bg-black/40 z-40 lg:block hidden"
+            onClick={close}
+          />
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.25, ease: "easeOut" }}
+            className="fixed top-0 left-0 right-0 z-40 bg-light dark:bg-dark shadow-2xl px-8 pt-24 pb-8 hidden lg:flex flex-col gap-1 border-b border-dark/10 dark:border-light/10"
+          >
+            <nav className="flex flex-col">
+              {NAV_LINKS.map(({ href, title }) => (
+                <CustomMobileLink key={href} href={href} title={title} toggle={close} />
+              ))}
+            </nav>
+
+            <div className="mt-6 pt-6 border-t border-dark/20 dark:border-light/20 flex items-center justify-between">
+              <SocialNav iconClassName="w-6" />
+              <ThemeToggle mode={mode} setMode={setMode} />
+            </div>
+          </motion.div>
+        </>
       )}
 
       <div className="absolute left-1/2 transform -translate-x-1/2">

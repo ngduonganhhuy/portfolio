@@ -1,0 +1,68 @@
+export const MY_EXTENSIONS = [
+  {
+    title: "Holmes DNS",
+    description: "Personal DNS server with ad blocking and tracker filtering. Use it to block ads network-wide on all your devices.",
+    category: "DNS / Network",
+    icon: "https://dns.holmes.id.vn/favicon.ico",
+    link: "https://dns.holmes.id.vn",
+    github: null,
+    tags: ["DNS", "Ad Blocker", "Self-hosted"],
+  },
+];
+
+export const POPULAR_EXTENSIONS = [
+  {
+    title: "AdGuard Home",
+    description: "Network-wide ad & tracker blocking. Self-hosted DNS server that works as a DNS sinkhole.",
+    category: "DNS / Network",
+    icon: "https://cdn.adguard.com/public/Adguard/Common/adguard_home.svg",
+    link: "https://github.com/AdguardTeam/AdGuardHome/releases",
+    github: "https://github.com/AdguardTeam/AdGuardHome",
+    tags: ["DNS", "Self-hosted", "Open Source"],
+  },
+  {
+    title: "AdGuard Browser Extension",
+    description: "The most advanced ad blocker for Chrome, Firefox, Edge and Opera. Blocks ads on all websites.",
+    category: "Browser Extension",
+    icon: "https://cdn.adguard.com/public/Adguard/Common/adguard_extension.svg",
+    link: "https://adguard.com/en/adguard-browser-extension/overview.html",
+    github: "https://github.com/AdguardTeam/AdguardBrowserExtension",
+    tags: ["Browser", "Ad Blocker"],
+  },
+  {
+    title: "uBlock Origin",
+    description: "An efficient wide-spectrum content blocker. Easy on CPU and memory, yet blocks millions of ads.",
+    category: "Browser Extension",
+    icon: "https://raw.githubusercontent.com/gorhill/uBlock/master/src/img/ublock.svg",
+    link: "https://ublockorigin.com/",
+    github: "https://github.com/gorhill/uBlock",
+    tags: ["Browser", "Ad Blocker", "Open Source"],
+  },
+  {
+    title: "Pi-hole",
+    description: "Network-level advertisement and internet tracker blocking application, acting as a DNS sinkhole.",
+    category: "DNS / Network",
+    icon: "https://pi-hole.net/wp-content/uploads/2022/07/logo.png",
+    link: "https://pi-hole.net/",
+    github: "https://github.com/pi-hole/pi-hole",
+    tags: ["DNS", "Self-hosted", "Raspberry Pi"],
+  },
+  {
+    title: "NextDNS",
+    description: "The new firewall for the modern internet. Block ads, trackers and malicious websites on all devices.",
+    category: "DNS / Network",
+    icon: "https://nextdns.io/favicon.ico",
+    link: "https://nextdns.io/",
+    github: null,
+    tags: ["DNS", "Cloud", "Privacy"],
+  },
+  {
+    title: "Bitwarden",
+    description: "Open source password manager. Store, share and sync sensitive data across all your devices.",
+    category: "Security",
+    icon: "https://bitwarden.com/icons/icon-192.png",
+    link: "https://bitwarden.com/download/",
+    github: "https://github.com/bitwarden/clients",
+    tags: ["Password Manager", "Open Source"],
+  },
+];

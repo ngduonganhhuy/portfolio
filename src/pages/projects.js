@@ -8,7 +8,6 @@ import { motion } from "framer-motion";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect } from "react";
 
 const FramerImage = motion(Image);
 
@@ -46,8 +45,7 @@ const ProjectImage = ({ img, title, link, priority = false, fill = false, width,
 
 const FeaturedProject = ({ type, title, summary, img, link, github }) => {
   return (
-    <article className="w-full flex items-center justify-between relative rounded-br-2xl rounded-3xl border border-solid border-dark bg-light shadow-2xl p-12 dark:bg-dark dark:border-light lg:flex-col lg:p-8 xs:rounded-2xl xs:rounded-br-3xl xs:p-4">
-      <div className="absolute top-0 -right-3 -z-10 w-[101%] h-[103%] rounded-[2.5rem] bg-dark rounded-br-3xl dark:bg-light xs:-right-2 sm:h-[102%] xs:w-full xs:rounded-[1.5rem]" />
+    <article className="w-full flex items-center justify-between relative rounded-br-2xl rounded-3xl border border-solid border-dark bg-light p-12 dark:bg-dark dark:border-light lg:flex-col lg:p-8 xs:rounded-2xl xs:rounded-br-3xl xs:p-4 shadow-[8px_8px_0px_0px_#333333] dark:shadow-[8px_8px_0px_0px_#F2E7D5]">
       <div className="w-1/2 cursor-pointer overflow-hidden rounded-lg flex justify-center shadow-md drop-shadow-sm lg:w-full">
         <ProjectImage img={img} title={title} link={link} priority width={600} height={400} />
       </div>
@@ -85,8 +83,7 @@ const FeaturedProject = ({ type, title, summary, img, link, github }) => {
 
 const Project = ({ title, type, img, link, github }) => {
   return (
-    <article className="w-full flex flex-col items-center justify-center rounded-2xl border border-solid border-dark bg-light p-6 relative dark:bg-dark dark:border-light xs:p-4">
-      <div className="absolute top-0 -right-3 -z-10 w-[101%] h-[103%] rounded-[2rem] bg-dark rounded-br-3xl dark:bg-light md:-right-2 md:w-[101%] xs:h-[102%] xs:rounded-[1.5rem]" />
+    <article className="w-full flex flex-col items-center justify-center rounded-2xl border border-solid border-dark bg-light p-6 relative dark:bg-dark dark:border-light xs:p-4 shadow-[8px_8px_0px_0px_#333333] dark:shadow-[8px_8px_0px_0px_#F2E7D5]">
       <div className="relative w-full aspect-[16/9] overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-800">
         <ProjectImage img={img} title={title} link={link} fill />
       </div>
@@ -120,13 +117,6 @@ const Project = ({ title, type, img, link, github }) => {
 };
 
 const Projects = () => {
-  useEffect(() => {
-    document.documentElement.style.scrollSnapType = "y mandatory";
-    return () => {
-      document.documentElement.style.scrollSnapType = "";
-    };
-  }, []);
-
   return (
     <>
       <Head>
