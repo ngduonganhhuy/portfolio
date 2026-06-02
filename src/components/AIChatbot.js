@@ -1,4 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
+import { executeAppCommand, parseAppCommand } from "@/lib/appCommands";
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 
@@ -87,6 +88,19 @@ export default function AIChatbot() {
     const nextMessages = [...messages, { role: "user", content: trimmed }];
     setMessages(nextMessages);
     setInput("");
+
+    const commandResult = executeAppCommand(parseAppCommand(trimmed));
+    if (commandResult) {
+      setMessages([
+        ...nextMessages,
+        {
+          role: "assistant",
+          content: commandResult.message,
+        },
+      ]);
+      return;
+    }
+
     setIsLoading(true);
 
     try {

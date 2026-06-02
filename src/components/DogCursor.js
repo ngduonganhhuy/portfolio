@@ -3,12 +3,57 @@ import { useEffect, useState } from "react";
 
 const INTERACTIVE = 'a, button, [role="button"], input, textarea, select, label';
 
+const DEFAULT_CURSOR = {
+  idle: "🐶",
+  hover: "🐕",
+  burst: "✨",
+};
+
+const THEME_CURSORS = {
+  noel: {
+    idle: "☃️",
+    hover: "⛄",
+    burst: "❄️",
+  },
+  tet: {
+    idle: "🦁",
+    hover: "🧧",
+    burst: "✨",
+  },
+  kungfu: {
+    idle: "🥋",
+    hover: "🤺",
+    burst: "💥",
+  },
+  farmer: {
+    idle: "🐃",
+    hover: "🌾",
+    burst: "🌱",
+  },
+};
+
+const getThemeCursor = (themeId) => THEME_CURSORS[themeId] || DEFAULT_CURSOR;
+
 const DogCursor = () => {
   const x = useMotionValue(-300);
   const y = useMotionValue(-300);
 
   const [cursorState, setCursorState] = useState("idle");
+  const [themeId, setThemeId] = useState("classic");
   const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const syncTheme = () => setThemeId(document.documentElement.dataset.theme || "classic");
+    syncTheme();
+
+    const observer = new MutationObserver(syncTheme);
+    observer.observe(document.documentElement, {
+      attributeFilter: ["data-theme"],
+      attributes: true,
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const isTouch = !window.matchMedia("(hover: hover) and (pointer: fine)").matches;
@@ -24,8 +69,8 @@ const DogCursor = () => {
       setCursorState((prev) => (prev === "click" ? "click" : hovering ? "hover" : "idle"));
     };
 
-    const onDown = () => setCursorState("click"); const onUp = () =>
-      setCursorState((prev) => (prev === "click" ? "idle" : prev));
+    const onDown = () => setCursorState("click");
+    const onUp = () => setCursorState((prev) => (prev === "click" ? "idle" : prev));
 
     const onLeaveWindow = () => setVisible(false);
     const onEnterWindow = () => setVisible(true);
@@ -47,21 +92,45 @@ const DogCursor = () => {
 
   if (!visible) return null;
 
+  const themeCursor = getThemeCursor(themeId);
+  const cursorSymbol = cursorState === "hover" ? themeCursor.hover : themeCursor.idle;
+
   return (
     <motion.div
       className="fixed top-0 left-0 pointer-events-none z-[9999] select-none"
       style={{ x, y, translateX: "-50%", translateY: "-60%" }}
     >
       <motion.div
+        className="relative"
         animate={
           cursorState === "click"
             ? { scale: 0.65, y: 6 }
             : cursorState === "hover"
             ? { scale: 1.5, y: -4 }
             : { scale: 1, y: 0 }
-        }
-        transition={{ type: "spring", stiffness: 500, damping: 22 }}
-      >
+          }
+          transition={{ type: "spring", stiffness: 500, damping: 22 }}
+        >
+        <motion.div
+          aria-hidden="true"
+          className={`absolute -inset-1 rounded-full ${
+            themeId === "tet"
+              ? "bg-primary/20"
+              : themeId === "noel"
+              ? "bg-light/20"
+              : themeId === "kungfu"
+              ? "bg-primaryDark/20"
+              : themeId === "farmer"
+              ? "bg-primary/20"
+              : "bg-transparent"
+          }`}
+          animate={
+            cursorState === "hover"
+              ? { opacity: [0.35, 0.75, 0.35], scale: [0.85, 1.15, 0.85] }
+              : { opacity: 0, scale: 0.85 }
+          }
+          transition={{ duration: 0.8, ease: "easeInOut", repeat: cursorState === "hover" ? Infinity : 0 }}
+        />
         <motion.div
           animate={
             cursorState === "idle"
@@ -79,7 +148,7 @@ const DogCursor = () => {
           }
           style={{ transformOrigin: "50% 80%", fontSize: "2rem", lineHeight: 1 }}
         >
-          {cursorState === "hover" ? "🐕" : "🐶"}
+          {cursorSymbol}
         </motion.div>
       </motion.div>
 
@@ -90,7 +159,7 @@ const DogCursor = () => {
           animate={{ opacity: 0, scale: 2.5 }}
           transition={{ duration: 0.35 }}
         >
-          <span style={{ fontSize: "1rem" }}>✨</span>
+          <span style={{ fontSize: "1rem" }}>{themeCursor.burst}</span>
         </motion.div>
       )}
     </motion.div>

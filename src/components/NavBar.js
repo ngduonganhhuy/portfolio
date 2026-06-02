@@ -1,6 +1,7 @@
 import { NAV_LINKS, SOCIAL_LINKS } from "@/data/navigation";
 import { THEMES, getThemeById } from "@/data/themes";
 import useThemeSwitcher from "@/hooks/useThemeSwitcher";
+import { getPortfolioLiteMode, setPortfolioLiteMode } from "@/lib/appCommands";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -132,19 +133,30 @@ const LiteModeToggle = ({ className = "" }) => {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    setIsLiteMode(window.localStorage.getItem("portfolioLiteMode") === "true");
-    setIsMounted(true);
+    const syncLiteMode = () => {
+      setIsLiteMode(getPortfolioLiteMode());
+      setIsMounted(true);
+    };
+
+    const handleLiteModeChange = (event) => {
+      setIsLiteMode(Boolean(event.detail?.isLiteMode));
+      setIsMounted(true);
+    };
+
+    syncLiteMode();
+    window.addEventListener("portfolio-lite-mode-change", handleLiteModeChange);
+    window.addEventListener("storage", syncLiteMode);
+
+    return () => {
+      window.removeEventListener("portfolio-lite-mode-change", handleLiteModeChange);
+      window.removeEventListener("storage", syncLiteMode);
+    };
   }, []);
 
   const toggleLiteMode = () => {
     const nextValue = !isLiteMode;
     setIsLiteMode(nextValue);
-    window.localStorage.setItem("portfolioLiteMode", String(nextValue));
-    window.dispatchEvent(
-      new CustomEvent("portfolio-lite-mode-change", {
-        detail: { isLiteMode: nextValue },
-      })
-    );
+    setPortfolioLiteMode(nextValue);
   };
 
   return (
