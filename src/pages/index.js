@@ -24,6 +24,8 @@ const NAV_ITEMS = [
 ];
 
 const FILTERS = ["All", "Mobile", "Frontend", "Web3", "Private"];
+const RESUME_PDF_PATH = "/NguyenDuongAnhHuy_SoftwareEngineer.pdf";
+const RESUME_FILE_NAME = "NguyenDuongAnhHuy_SoftwareEngineer.pdf";
 
 const QUICK_PROMPTS = [
   "Summarize Holmes in 30 seconds",
@@ -105,6 +107,15 @@ const INITIAL_MESSAGES = [
       "Ask me about Holmes, projects, mobile experience, architecture, or what proof matters for hiring.",
   },
 ];
+
+function downloadResumePdf() {
+  const link = document.createElement("a");
+  link.href = RESUME_PDF_PATH;
+  link.download = RESUME_FILE_NAME;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+}
 
 function classifyProject(project) {
   if (!project.link) return "Private";
@@ -288,8 +299,8 @@ function TopBar({ onOpenCommand }) {
           Available
         </span>
         <Link
-          href="/NguyenDuongAnhHuy_SoftwareEngineer.pdf"
-          target="_blank"
+          href={RESUME_PDF_PATH}
+          download={RESUME_FILE_NAME}
           className="flex items-center gap-1 rounded-lg bg-dark px-4 py-2 font-bold text-light dark:bg-light dark:text-dark"
         >
           Resume <LinkArrow className="h-5 w-5" />
@@ -641,10 +652,10 @@ function LiteHome() {
               </p>
               <div className="mt-2 flex items-center self-start lg:self-center">
                 <Link
-                  href="NguyenDuongAnhHuy_SoftwareEngineer.pdf"
+                  href={RESUME_PDF_PATH}
                   target="_blank"
                   className="flex items-center rounded-lg border border-solid border-transparent bg-dark p-2.5 px-6 text-lg font-semibold text-light hover:border-dark hover:bg-light hover:text-dark dark:bg-light dark:text-dark hover:dark:border-light hover:dark:bg-dark hover:dark:text-light md:p-2 md:px-4 md:text-base"
-                  download={true}
+                  download={RESUME_FILE_NAME}
                 >
                   Resume <LinkArrow className="ml-1 w-6" />
                 </Link>
@@ -858,12 +869,7 @@ export default function Home() {
         label: "Open resume",
         meta: "Software Engineer PDF",
         group: "Contact",
-        action: () =>
-          window.open(
-            "/NguyenDuongAnhHuy_SoftwareEngineer.pdf",
-            "_blank",
-            "noopener,noreferrer",
-          ),
+        action: downloadResumePdf,
       },
     ];
   }, []);
