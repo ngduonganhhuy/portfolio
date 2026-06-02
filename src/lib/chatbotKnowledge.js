@@ -17,6 +17,43 @@ function compactText(text = "") {
     .trim();
 }
 
+function readPublicProfileMarkdown() {
+  const fullPath = path.join(process.cwd(), "src/contents/chatbot/public-profile.md");
+
+  if (!fs.existsSync(fullPath)) return "";
+
+  return fs.readFileSync(fullPath, "utf8");
+}
+
+function plainTextLines(text = "") {
+  return text
+    .replace(/^---[\s\S]*?---/, "")
+    .replace(/```[\s\S]*?```/g, " ")
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+    .split("\n")
+    .map((line) =>
+      line
+        .replace(/^\s*[-+]\s+/, "- ")
+        .replace(/[#>*_`~]/g, "")
+        .replace(/\s+/g, " ")
+        .trim(),
+    )
+    .filter(Boolean)
+    .join("\n");
+}
+
+function extractMarkdownSection(markdown = "", heading) {
+  const startIndex = markdown.indexOf(heading);
+  if (startIndex < 0) return "";
+
+  const sectionStart = startIndex + heading.length;
+  const rest = markdown.slice(sectionStart);
+  const nextHeadingIndex = rest.search(/\n(?:#{1,6}\s|\*\*[^*\n]+\*\*)/);
+  const section = nextHeadingIndex >= 0 ? rest.slice(0, nextHeadingIndex) : rest;
+
+  return plainTextLines(`${heading}\n${section}`);
+}
+
 function listProjects(projects) {
   return projects
     .map((project) => {
@@ -53,18 +90,31 @@ function listArticles() {
 }
 
 function getPublicProfileKnowledge() {
-  const fullPath = path.join(process.cwd(), "src/contents/chatbot/public-profile.md");
+  return compactText(readPublicProfileMarkdown());
+}
 
-  if (!fs.existsSync(fullPath)) return "";
+export function buildChatbotGoldenRules() {
+  const rules = extractMarkdownSection(
+    readPublicProfileMarkdown(),
+    "**Quy tắc vàng trong conversation**",
+  );
 
-  return compactText(fs.readFileSync(fullPath, "utf8"));
+  return (
+    rules ||
+    [
+      "Quy tắc vàng trong conversation",
+      "- Trả lời ngắn gọn, tự nhiên theo văn nói.",
+      "- Chỉ trả về text thường, không dùng HTML hay Markdown phức tạp.",
+      "- Format output rõ ràng, dễ đọc.",
+    ].join("\n")
+  );
 }
 
 export function buildChatbotKnowledge() {
   return [
     `Site: ${SITE_NAME} (${SITE_URL})`,
     `Owner: ${SITE_AUTHOR}, also uses the nickname Holmes.`,
-    "Primary profile: Mobile Developer / Software Engineer with 4+ years of experience, focused on Flutter, React Native, scalable mobile architecture, clean code, and growing toward Solution Architect work.",
+    "Primary profile: Mobile Developer / Software Engineer with 5+ years of experience, focused on Swift, Flutter, React Native, scalable mobile architecture, clean code, and growing toward Solution Architect work.",
     "Contact: ngduonganhhuy@gmail.com. Resume: /NguyenDuongAnhHuy_SoftwareEngineer.pdf.",
     "",
     "Public profile knowledge:",

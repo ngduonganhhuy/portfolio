@@ -69,7 +69,7 @@ const About = () => {
           >
             <h2 className="mb-4 text-lg font-bold uppercase text-dark/75 dark:text-light/75">Bio</h2>
             <p className="font-medium">
-              As a passionate Software Engineer with over four years of experience
+              As a passionate Software Engineer with over five years of experience
               in designing, developing, and delivering scalable software solutions,
               I am seeking a Solution Architect role where I can leverage my
               technical expertise, system design knowledge, and leadership skills

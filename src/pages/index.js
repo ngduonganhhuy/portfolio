@@ -11,7 +11,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import profilePic from "../../public/images/profile/face_focus.png";
 import lightBulb from "../../public/images/svgs/miscellaneous_icons_1.svg";
 
@@ -145,7 +145,7 @@ function StatusDot({ tone = "primary" }) {
   return <span className={`h-2.5 w-2.5 rounded-full ${tones[tone]}`} />;
 }
 
-function Sidebar({ activeView, onChangeView }) {
+function Sidebar({ activeView, onChangeView, viewButtonRefs }) {
   return (
     <aside className="flex h-full min-h-0 flex-col border-r border-dark/15 bg-dark/[0.03] dark:border-light/15 dark:bg-light/[0.04] lg:border-b lg:border-r-0">
       <div className="border-b border-dark/15 px-5 py-5 dark:border-light/15 lg:px-4">
@@ -175,6 +175,9 @@ function Sidebar({ activeView, onChangeView }) {
         {NAV_ITEMS.map((item) => (
           <button
             key={item.id}
+            ref={(element) => {
+              viewButtonRefs.current[item.id] = element;
+            }}
             type="button"
             onClick={() => onChangeView(item.id)}
             className={`flex min-h-[44px] items-center justify-between rounded-lg border px-3 text-left text-sm font-semibold transition ${
@@ -761,21 +764,22 @@ function AssistantPanel() {
 
       <div
         ref={listRef}
-        className="min-h-[300px] flex-1 space-y-3 overflow-y-auto p-4"
+        className="min-h-[300px] min-w-0 flex-1 space-y-3 overflow-y-auto overflow-x-hidden p-4"
       >
         {messages.map((message, index) => {
           const isUser = message.role === "user";
           return (
             <div
               key={`${message.role}-${index}`}
-              className={`flex ${isUser ? "justify-end" : "justify-start"}`}
+              className={`flex min-w-0 ${isUser ? "justify-end" : "justify-start"}`}
             >
               <div
-                className={`max-w-[88%] rounded-lg px-3 py-2 text-sm font-medium leading-6 ${
+                className={`min-w-0 max-w-[88%] overflow-hidden break-words whitespace-pre-wrap rounded-lg px-3 py-2 text-sm font-medium leading-6 ${
                   isUser
                     ? "bg-dark text-light dark:bg-light dark:text-dark"
                     : "border border-dark/15 bg-light text-dark dark:border-light/15 dark:bg-dark dark:text-light"
                 }`}
+                style={{ overflowWrap: "anywhere", wordBreak: "break-word" }}
               >
                 {message.content}
               </div>
@@ -783,8 +787,11 @@ function AssistantPanel() {
           );
         })}
         {isLoading && (
-          <div className="flex justify-start">
-            <div className="rounded-lg border border-dark/15 bg-light px-3 py-2 text-sm font-medium dark:border-light/15 dark:bg-dark">
+          <div className="flex min-w-0 justify-start">
+            <div
+              className="min-w-0 max-w-[88%] overflow-hidden break-words whitespace-pre-wrap rounded-lg border border-dark/15 bg-light px-3 py-2 text-sm font-medium dark:border-light/15 dark:bg-dark"
+              style={{ overflowWrap: "anywhere", wordBreak: "break-word" }}
+            >
               Thinking...
             </div>
           </div>
@@ -821,13 +828,22 @@ export default function Home() {
   const [query, setQuery] = useState("");
   const [isLiteMode, setIsLiteMode] = useState(false);
   const [isLiteModeMounted, setIsLiteModeMounted] = useState(false);
+  const [isMobileViewport, setIsMobileViewport] = useState(false);
+  const viewButtonRefs = useRef({});
+
+  const changeActiveView = useCallback((nextView) => {
+    setActiveView(nextView);
+    window.requestAnimationFrame(() => {
+      viewButtonRefs.current[nextView]?.focus();
+    });
+  }, []);
 
   const commands = useMemo(() => {
     const viewCommands = NAV_ITEMS.map((item) => ({
       label: `Open ${item.label}`,
       meta: `Switch workspace to ${item.label.toLowerCase()}`,
       group: "View",
-      action: () => setActiveView(item.id),
+      action: () => changeActiveView(item.id),
     }));
 
     const filterCommands = FILTERS.map((filter) => ({
@@ -835,7 +851,7 @@ export default function Home() {
       meta: "Open Project Desk and apply filter",
       group: "Project",
       action: () => {
-        setActiveView("projects");
+        changeActiveView("projects");
         setActiveFilter(filter);
       },
     }));
@@ -848,7 +864,7 @@ export default function Home() {
         action: () => {
           if (project.link)
             window.open(project.link, "_blank", "noopener,noreferrer");
-          setActiveView("projects");
+          changeActiveView("projects");
         },
       }),
     );
@@ -872,7 +888,7 @@ export default function Home() {
         action: downloadResumePdf,
       },
     ];
-  }, []);
+  }, [changeActiveView]);
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -907,13 +923,13 @@ export default function Home() {
       );
       if (matchingView) {
         event.preventDefault();
-        setActiveView(matchingView.id);
+        changeActiveView(matchingView.id);
       }
     };
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isCommandOpen]);
+  }, [changeActiveView, isCommandOpen]);
 
   useEffect(() => {
     const syncLiteMode = () => {
@@ -936,7 +952,31 @@ export default function Home() {
     };
   }, []);
 
-  if (isLiteModeMounted && isLiteMode) {
+  useEffect(() => {
+    const mobileQuery = window.matchMedia("(max-width: 767px)");
+    const syncMobileViewport = () => {
+      const isMobile = mobileQuery.matches;
+      setIsMobileViewport(isMobile);
+
+      if (isMobile) {
+        window.localStorage.setItem("portfolioLiteMode", "true");
+        setIsLiteMode(true);
+        setIsLiteModeMounted(true);
+        window.dispatchEvent(
+          new CustomEvent("portfolio-lite-mode-change", {
+            detail: { isLiteMode: true },
+          }),
+        );
+      }
+    };
+
+    syncMobileViewport();
+    mobileQuery.addEventListener("change", syncMobileViewport);
+
+    return () => mobileQuery.removeEventListener("change", syncMobileViewport);
+  }, []);
+
+  if (isLiteModeMounted && (isLiteMode || isMobileViewport)) {
     return <LiteHome />;
   }
 
@@ -968,7 +1008,11 @@ export default function Home() {
 
       <section className="portfolio-os w-full bg-light px-8 py-10 text-dark dark:bg-dark dark:text-light xl:px-5 sm:px-3">
         <div className="mx-auto grid h-[calc(100vh-8rem)] min-h-[720px] max-w-[1500px] grid-cols-[280px_minmax(0,1fr)_360px] overflow-hidden rounded-lg border border-dark bg-light shadow-[10px_10px_0px_0px_#333333] dark:border-light dark:bg-dark dark:shadow-[10px_10px_0px_0px_#F2E7D5] xl:h-auto xl:min-h-0 xl:grid-cols-1">
-          <Sidebar activeView={activeView} onChangeView={setActiveView} />
+          <Sidebar
+            activeView={activeView}
+            onChangeView={changeActiveView}
+            viewButtonRefs={viewButtonRefs}
+          />
           <div className="grid h-full min-h-0 grid-rows-[auto_minmax(0,1fr)] overflow-hidden xl:h-[calc(100dvh-12rem)] xl:min-h-[560px]">
             <TopBar onOpenCommand={() => setIsCommandOpen(true)} />
             <Workspace

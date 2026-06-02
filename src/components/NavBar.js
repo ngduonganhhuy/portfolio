@@ -175,7 +175,7 @@ const LiteModeToggle = ({ className = "" }) => {
 };
 
 const SocialNav = ({ className = "", iconClassName = "" }) => (
-  <nav className={`flex items-center justify-center flex-wrap ${className}`}>
+  <nav className={`flex shrink-0 items-center justify-center gap-5 ${className}`}>
     {SOCIAL_LINKS.map(({ href, label, icon }) => {
       const Icon = ICON_MAP[icon];
       return (
@@ -186,7 +186,7 @@ const SocialNav = ({ className = "", iconClassName = "" }) => (
           aria-label={label}
           whileHover={{ y: -2 }}
           whileTap={{ scale: 0.9 }}
-          className={`mx-3 ${iconClassName}`}
+          className={`grid h-10 w-10 shrink-0 place-items-center ${iconClassName}`}
         >
           <Icon />
         </motion.a>
@@ -257,13 +257,10 @@ const NavBar = () => {
               ))}
             </nav>
 
-            <div className="mt-6 pt-6 border-t border-dark/20 dark:border-light/20 flex items-center justify-between">
+            <div className="mt-6 flex items-center justify-between gap-4 border-t border-dark/20 pt-6 dark:border-light/20 sm:flex-col sm:items-stretch">
               <SocialNav iconClassName="w-6" />
-              <div className="flex items-center gap-3">
-                <LiteModeToggle />
-                <div className="h-10 min-w-[128px] sm:min-w-[112px]">
-                  {isThemeMounted && <ThemeMenu themeId={themeId} setThemeId={setThemeId} />}
-                </div>
+              <div className="flex h-10 min-w-[128px] shrink-0 items-center justify-end sm:w-full sm:justify-center">
+                {isThemeMounted && <ThemeMenu themeId={themeId} setThemeId={setThemeId} className="sm:w-full" />}
               </div>
             </div>
           </motion.div>

@@ -50,13 +50,14 @@ const MessageBubble = ({ role, content }) => {
   const isUser = role === "user";
 
   return (
-    <div className={`flex ${isUser ? "justify-end" : "justify-start"}`}>
+    <div className={`flex min-w-0 ${isUser ? "justify-end" : "justify-start"}`}>
       <div
-        className={`max-w-[82%] rounded-lg px-3 py-2 text-sm leading-relaxed shadow-sm ${
+        className={`min-w-0 max-w-[82%] overflow-hidden break-words rounded-lg px-3 py-2 text-sm leading-relaxed shadow-sm [overflow-wrap:anywhere] whitespace-pre-wrap ${
           isUser
             ? "bg-dark text-light dark:bg-light dark:text-dark"
             : "bg-light text-dark border border-dark/15 dark:bg-dark dark:text-light dark:border-light/20"
         }`}
+        style={{ overflowWrap: "anywhere", wordBreak: "break-word" }}
       >
         {content}
       </div>
@@ -122,7 +123,7 @@ export default function AIChatbot() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 sm:bottom-4 sm:right-4">
+    <div className="fixed bottom-6 right-6 z-50 max-w-[calc(100vw-1rem)] sm:bottom-4 sm:right-2">
       <AnimatePresence>
         {isOpen && (
           <motion.section
@@ -130,32 +131,32 @@ export default function AIChatbot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 16, scale: 0.98 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="mb-4 flex h-[560px] w-[380px] max-w-[calc(100vw-2rem)] flex-col overflow-hidden rounded-lg border border-dark bg-light text-dark shadow-[8px_8px_0px_0px_#333333] dark:border-light dark:bg-dark dark:text-light dark:shadow-[8px_8px_0px_0px_#F2E7D5] sm:h-[70vh] sm:w-[calc(100vw-2rem)]"
+            className="mb-4 flex h-[560px] w-[380px] max-w-full flex-col overflow-hidden rounded-lg border border-dark bg-light text-dark shadow-[8px_8px_0px_0px_#333333] dark:border-light dark:bg-dark dark:text-light dark:shadow-[8px_8px_0px_0px_#F2E7D5] sm:h-[70vh] sm:w-[calc(100vw-1rem)] sm:shadow-[4px_4px_0px_0px_#333333] sm:dark:shadow-[4px_4px_0px_0px_#F2E7D5]"
             aria-label="Holmes AI chatbot"
           >
-            <div className="flex items-center justify-between border-b border-dark/15 px-4 py-3 dark:border-light/15">
-              <div>
+            <div className="flex min-w-0 items-center justify-between gap-3 border-b border-dark/15 px-4 py-3 dark:border-light/15">
+              <div className="min-w-0">
                 <h2 className="text-base font-bold">Holmes AI</h2>
-                <p className="text-xs text-dark/65 dark:text-light/65">Gemini trained on this portfolio</p>
+                <p className="truncate text-xs text-dark/65 dark:text-light/65">Gemini trained on this portfolio</p>
               </div>
               <button
                 type="button"
                 onClick={() => setIsOpen(false)}
-                className="grid h-9 w-9 place-items-center rounded-full border border-dark/20 text-dark transition hover:bg-dark hover:text-light dark:border-light/20 dark:text-light dark:hover:bg-light dark:hover:text-dark"
+                className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-dark/20 text-dark transition hover:bg-dark hover:text-light dark:border-light/20 dark:text-light dark:hover:bg-light dark:hover:text-dark"
                 aria-label="Close chatbot"
               >
                 <CloseIcon className="h-5 w-5" />
               </button>
             </div>
 
-            <div ref={listRef} className="flex-1 space-y-3 overflow-y-auto px-4 py-4">
+            <div ref={listRef} className="min-w-0 flex-1 space-y-3 overflow-y-auto overflow-x-hidden px-4 py-4">
               {messages.map((message, index) => (
                 <MessageBubble key={`${message.role}-${index}`} {...message} />
               ))}
               {isLoading && <MessageBubble role="assistant" content="Đang trả lời..." />}
             </div>
 
-            <form onSubmit={sendMessage} className="flex gap-2 border-t border-dark/15 p-3 dark:border-light/15">
+            <form onSubmit={sendMessage} className="flex min-w-0 gap-2 border-t border-dark/15 p-3 dark:border-light/15">
               <input
                 value={input}
                 onChange={(event) => setInput(event.target.value)}

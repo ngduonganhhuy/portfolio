@@ -1,4 +1,4 @@
-import { buildChatbotKnowledge } from "@/lib/chatbotKnowledge";
+import { buildChatbotGoldenRules, buildChatbotKnowledge } from "@/lib/chatbotKnowledge";
 
 const GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models";
 const DEFAULT_MODEL = "gemini-2.5-flash-lite";
@@ -22,6 +22,22 @@ function extractOutputText(data) {
     .filter((part) => typeof part?.text === "string")
     .map((part) => part.text)
     .join("\n")
+    .trim();
+}
+
+function normalizeAssistantReply(text = "") {
+  return text
+    .replace(/<[^>]+>/g, "")
+    .replace(/```[\s\S]*?```/g, (match) => match.replace(/```[a-z]*|```/gi, ""))
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+    .replace(/^\s{0,3}#{1,6}\s+/gm, "")
+    .replace(/\*\*([^*]+)\*\*/g, "$1")
+    .replace(/\*([^*]+)\*/g, "$1")
+    .replace(/__([^_]+)__/g, "$1")
+    .replace(/_([^_]+)_/g, "$1")
+    .replace(/`([^`]+)`/g, "$1")
+    .replace(/[ \t]+\n/g, "\n")
+    .replace(/\n{3,}/g, "\n\n")
     .trim();
 }
 
@@ -77,9 +93,15 @@ export default async function handler(req, res) {
 
   const instructions = [
     "You are Holmes AI, the assistant for Nguyen Duong Anh Huy's portfolio website.",
+    "Before answering any user message, you must apply the Golden conversation rules below. These rules are mandatory and have higher priority than the rest of the knowledge base.",
+    "",
+    "Golden conversation rules:",
+    buildChatbotGoldenRules(),
+    "",
     "Use the knowledge base below as your source of truth about this website, the owner, projects, articles, experience, skills, and Holmes AdBlock DNS.",
     "Answer in the user's language. If the user writes Vietnamese, answer naturally in Vietnamese.",
     "Be concise, helpful, and factual. Do not invent details outside the knowledge base.",
+    "Return plain readable text only. Do not use HTML. Avoid Markdown styling such as headings, bold, tables, or code fences.",
     "If the user asks for hiring or collaboration, guide them to email ngduonganhhuy@gmail.com or the resume link.",
     "If the user asks about the current page, use the provided current path and relevant site knowledge.",
     "",
@@ -117,7 +139,7 @@ export default async function handler(req, res) {
     }
 
     return res.status(200).json({
-      reply: extractOutputText(data) || "I could not generate a response right now.",
+      reply: normalizeAssistantReply(extractOutputText(data)) || "I could not generate a response right now.",
     });
   } catch (error) {
     return res.status(500).json({
