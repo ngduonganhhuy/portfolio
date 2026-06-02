@@ -4,7 +4,7 @@ import useThemeSwitcher from "@/hooks/useThemeSwitcher";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { GithubIcon, LinkedInIcon, TwitterIcon } from "./Icon";
 import Logo from "./Logo";
 
@@ -127,6 +127,53 @@ const ThemeMenu = ({ themeId, setThemeId, className = "" }) => {
   );
 };
 
+const LiteModeToggle = ({ className = "" }) => {
+  const [isLiteMode, setIsLiteMode] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsLiteMode(window.localStorage.getItem("portfolioLiteMode") === "true");
+    setIsMounted(true);
+  }, []);
+
+  const toggleLiteMode = () => {
+    const nextValue = !isLiteMode;
+    setIsLiteMode(nextValue);
+    window.localStorage.setItem("portfolioLiteMode", String(nextValue));
+    window.dispatchEvent(
+      new CustomEvent("portfolio-lite-mode-change", {
+        detail: { isLiteMode: nextValue },
+      })
+    );
+  };
+
+  return (
+    <button
+      type="button"
+      onClick={toggleLiteMode}
+      className={`flex h-10 items-center gap-2 rounded-lg border border-dark/20 bg-light px-3 text-sm font-semibold text-dark transition hover:border-primary dark:border-light/20 dark:bg-dark dark:text-light dark:hover:border-primaryDark ${
+        isLiteMode ? "border-primary dark:border-primaryDark" : ""
+      } ${className}`}
+      aria-pressed={isLiteMode}
+      aria-label="Toggle lite portfolio mode"
+      disabled={!isMounted}
+    >
+      <span>Lite</span>
+      <span
+        className={`relative h-5 w-9 rounded-full border border-dark/20 transition dark:border-light/20 ${
+          isLiteMode ? "bg-primary dark:bg-primaryDark" : "bg-dark/10 dark:bg-light/10"
+        }`}
+      >
+        <span
+          className={`absolute top-1/2 h-3.5 w-3.5 -translate-y-1/2 rounded-full bg-light transition dark:bg-dark ${
+            isLiteMode ? "left-[18px]" : "left-1"
+          }`}
+        />
+      </span>
+    </button>
+  );
+};
+
 const SocialNav = ({ className = "", iconClassName = "" }) => (
   <nav className={`flex items-center justify-center flex-wrap ${className}`}>
     {SOCIAL_LINKS.map(({ href, label, icon }) => {
@@ -182,6 +229,7 @@ const NavBar = () => {
         </nav>
         <div className="flex items-center gap-1">
           <SocialNav iconClassName="w-6" />
+          <LiteModeToggle className="ml-3" />
           <div className="ml-3 h-10 min-w-[128px] sm:min-w-[112px]">
             {isThemeMounted && <ThemeMenu themeId={themeId} setThemeId={setThemeId} />}
           </div>
@@ -211,8 +259,11 @@ const NavBar = () => {
 
             <div className="mt-6 pt-6 border-t border-dark/20 dark:border-light/20 flex items-center justify-between">
               <SocialNav iconClassName="w-6" />
-              <div className="h-10 min-w-[128px] sm:min-w-[112px]">
-                {isThemeMounted && <ThemeMenu themeId={themeId} setThemeId={setThemeId} />}
+              <div className="flex items-center gap-3">
+                <LiteModeToggle />
+                <div className="h-10 min-w-[128px] sm:min-w-[112px]">
+                  {isThemeMounted && <ThemeMenu themeId={themeId} setThemeId={setThemeId} />}
+                </div>
               </div>
             </div>
           </motion.div>

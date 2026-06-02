@@ -2,6 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
+.portfolio-os .border-dark\/10,
+.portfolio-os .border-dark\/15 {
+  border-color: rgb(var(--color-dark) / 0.34);
+}
+
+.portfolio-os .border-dark\/20 {
+  border-color: rgb(var(--color-dark) / 0.42);
+}
+
+.portfolio-os .hover\:border-dark\/20:hover,
+.portfolio-os .hover\:border-dark\/35:hover,
+.portfolio-os .hover\:border-dark\/40:hover {
+  border-color: rgb(var(--color-dark) / 0.62);
+}
+
+.dark .portfolio-os .dark\:border-light\/10,
+.dark .portfolio-os .dark\:border-light\/15 {
+  border-color: rgb(var(--color-light) / 0.38);
+}
+
+.dark .portfolio-os .dark\:border-light\/20 {
+  border-color: rgb(var(--color-light) / 0.48);
+}
+
+.dark .portfolio-os .dark\:hover\:border-light\/20:hover,
+.dark .portfolio-os .dark\:hover\:border-light\/35:hover,
+.dark .portfolio-os .dark\:hover\:border-light\/40:hover {
+  border-color: rgb(var(--color-light) / 0.68);
+}
+
 :root,
 :root[data-theme="classic"] {
   --color-light: 242 231 213;
