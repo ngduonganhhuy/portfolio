@@ -32,6 +32,17 @@ const COMMANDS = [
   },
 ];
 
+const INSTALL_COMMANDS = [
+  {
+    command: "npm install -g holmes-cli",
+    label: "Install Holmes CLI globally, then run `holmes` from any directory.",
+  },
+  {
+    command: "npx holmes",
+    label: "Run Holmes CLI without installing it globally.",
+  },
+];
+
 const FEATURES = [
   {
     title: "Multi-language scaffolding",
@@ -73,6 +84,7 @@ function TerminalWindow() {
         <span className="ml-3 text-xs font-semibold text-zinc-500">cli.holmes.id.vn</span>
       </div>
       <div className="space-y-5 p-5 font-mono text-sm leading-7 sm:text-xs">
+        <p><span className="text-teal-300">$</span> npm install -g holmes-cli</p>
         <p><span className="text-teal-300">$</span> holmes new checkout-api --language typescript --template clean-architecture</p>
         <div className="space-y-1 text-zinc-300">
           <p><span className="text-emerald-300">?</span> Include tests? yes</p>
@@ -183,11 +195,17 @@ export default function HolmesCliPage() {
               <p className="text-sm font-black uppercase tracking-[0.16em] text-teal-700">Usage</p>
               <h2 className="mt-3 text-4xl font-black leading-tight md:text-3xl">Commands that match the current CLI surface.</h2>
               <p className="mt-5 text-base font-medium leading-7 text-zinc-700">
-                The repository currently exposes a `holmes` binary, a default project creation command, and an `upgrade` command. Install from the repo or a published package when available.
+                Install globally with npm, or run it directly with npx when you only need a quick scaffold.
               </p>
             </div>
 
             <div className="grid gap-4">
+              {INSTALL_COMMANDS.map((item) => (
+                <article key={item.command} className="border border-zinc-950 bg-white p-5 text-zinc-950 shadow-[5px_5px_0px_0px_#18181b]">
+                  <p className="font-mono text-sm font-bold text-teal-700">$ {item.command}</p>
+                  <p className="mt-3 text-sm font-medium text-zinc-700">{item.label}</p>
+                </article>
+              ))}
               {COMMANDS.map((item) => (
                 <article key={item.command} className="border border-zinc-950 bg-zinc-950 p-5 text-white">
                   <p className="font-mono text-sm text-teal-200">$ {item.command}</p>
