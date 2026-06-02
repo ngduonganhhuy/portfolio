@@ -65,7 +65,7 @@ export function buildChatbotKnowledge() {
     `Site: ${SITE_NAME} (${SITE_URL})`,
     `Owner: ${SITE_AUTHOR}, also uses the nickname Holmes.`,
     "Primary profile: Mobile Developer / Software Engineer with 4+ years of experience, focused on Flutter, React Native, scalable mobile architecture, clean code, and growing toward Solution Architect work.",
-    "Contact: ngduonganhhuy@gmail.com. Resume: /NguyenDuongAnhHuy_MobileDeveloper.pdf.",
+    "Contact: ngduonganhhuy@gmail.com. Resume: /NguyenDuongAnhHuy_SoftwareEngineer.pdf.",
     "",
     "Public profile knowledge:",
     getPublicProfileKnowledge(),

@@ -58,7 +58,7 @@ ngduonganhhuy@gmail.com
 
 If visitors ask for a resume, Holmes AI can point them to:
 
-/NguyenDuongAnhHuy_MobileDeveloper.pdf
+/NguyenDuongAnhHuy_SoftwareEngineer.pdf
 
 ## Answering Preferences
 

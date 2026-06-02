@@ -78,7 +78,7 @@
   position: fixed;
   width: 1.35rem;
   height: 1.35rem;
-  animation: themeMaiFall 6s linear infinite;
+  animation: themeMaiFall 5s linear forwards;
 }
 
 .theme-tet-flower span {
@@ -281,7 +281,7 @@
   background: rgb(var(--color-light));
   border-radius: 50%;
   opacity: 0.85;
-  animation: themeSnowFall 6s linear infinite;
+  animation: themeSnowFall 5s linear forwards;
 }
 
 .theme-noel-santa {
@@ -472,7 +472,7 @@
   );
   filter: drop-shadow(0 0 10px rgba(217, 164, 65, 0.58));
   opacity: 0.78;
-  animation: themeChiFall 5s linear infinite;
+  animation: themeChiFall 5s linear forwards;
 }
 
 .theme-kungfu-chi::before,
@@ -802,10 +802,16 @@
 }
 
 @keyframes themeMaiFall {
-  from {
+  0% {
+    opacity: 0;
     transform: translate3d(0, -2rem, 0) rotate(0deg);
   }
-  to {
+  12%,
+  82% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
     transform: translate3d(2.4rem, 105vh, 0) rotate(260deg);
   }
 }
@@ -832,10 +838,16 @@
 }
 
 @keyframes themeSnowFall {
-  from {
+  0% {
+    opacity: 0;
     transform: translate3d(0, -1rem, 0);
   }
-  to {
+  12%,
+  82% {
+    opacity: 0.85;
+  }
+  100% {
+    opacity: 0;
     transform: translate3d(1.8rem, 105vh, 0);
   }
 }
@@ -861,10 +873,16 @@
 }
 
 @keyframes themeChiFall {
-  from {
+  0% {
+    opacity: 0;
     transform: translate3d(0, -3rem, 0) rotate(-8deg) scaleY(0.8);
   }
-  to {
+  12%,
+  82% {
+    opacity: 0.78;
+  }
+  100% {
+    opacity: 0;
     transform: translate3d(-1.7rem, 105vh, 0) rotate(18deg) scaleY(1.08);
   }
 }
