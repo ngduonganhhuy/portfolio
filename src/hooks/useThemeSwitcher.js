@@ -1,52 +1,39 @@
 import { useEffect, useState } from "react";
+import { DEFAULT_THEME, getThemeById, normalizeThemeId } from "@/data/themes";
 
 const useThemeSwitcher = () => {
-  const preferDarkQuery = "(prefer-color-scheme: dark)";
-  const [mode, setMode] = useState("");
+  const [themeId, setThemeId] = useState(DEFAULT_THEME);
+  const [isMounted, setIsMounted] = useState(false);
+
+  const applyTheme = (nextThemeId) => {
+    const theme = getThemeById(nextThemeId);
+    const resolvedThemeId = theme?.id || DEFAULT_THEME;
+
+    document.documentElement.dataset.theme = resolvedThemeId;
+    if (theme?.mode === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  };
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia(preferDarkQuery);
-    const userPref = window.localStorage.getItem("theme");
+    const storedTheme = window.localStorage.getItem("theme");
+    const nextThemeId = normalizeThemeId(storedTheme);
 
-    const handleChange = () => {
-      if (userPref) {
-        let check = userPref.trim().toLowerCase() === "dark" ? "dark" : "light";
-        setMode(check);
-        if (check === "dark") {
-          document.documentElement.classList.add("dark");
-        } else {
-          document.documentElement.classList.remove("dark");
-        }
-      } else {
-        let check = mediaQuery.matches ? "light" : "dark";
-        setMode(check);
-        if (check === "dark") {
-          document.documentElement.classList.add("dark");
-        } else {
-          document.documentElement.classList.remove("dark");
-        }
-      }
-    };
-
-    handleChange();
-    mediaQuery.addEventListener("change", handleChange);
-
-    return () => mediaQuery.removeEventListener("change", handleChange);
+    setThemeId(nextThemeId);
+    applyTheme(nextThemeId);
+    setIsMounted(true);
   }, []);
 
   useEffect(() => {
-    
-    if (mode === "dark") {
-      window.localStorage.setItem("theme", "dark");
-      document.documentElement.classList.add("dark");
-    }
-    if (mode === "light") {
-      window.localStorage.setItem("theme", "light");
-      document.documentElement.classList.remove("dark");
-    }
-  }, [mode]);
+    if (!isMounted) return;
 
-  return [mode, setMode];
+    window.localStorage.setItem("theme", themeId);
+    applyTheme(themeId);
+  }, [isMounted, themeId]);
+
+  return [themeId, setThemeId, isMounted];
 };
 
 export default useThemeSwitcher;

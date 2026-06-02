@@ -1,5 +1,6 @@
 import Footer from "@/components/Footer";
 import NavBar from "@/components/NavBar";
+import ThemeDecorations from "@/components/ThemeDecorations";
 import "@/styles/globals.css";
 import { AnimatePresence, motion } from "framer-motion";
 import { Montserrat } from "next/font/google";
@@ -9,6 +10,7 @@ import { useRouter } from "next/router";
 
 const DogCursor = dynamic(() => import("@/components/DogCursor"), { ssr: false });
 const IntroOverlay = dynamic(() => import("@/components/IntroOverlay"), { ssr: false });
+const AIChatbot = dynamic(() => import("@/components/AIChatbot"), { ssr: false });
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -27,6 +29,7 @@ export default function App({ Component, pageProps }) {
       </Head>
       <div className={`${montserrat.variable} font-mont bg-light dark:bg-dark w-full min-h-screen`}>
         <IntroOverlay />
+        <ThemeDecorations />
         <DogCursor />
         <NavBar />
         <AnimatePresence mode="wait">
@@ -40,6 +43,7 @@ export default function App({ Component, pageProps }) {
             <Component {...pageProps} />
           </motion.div>
         </AnimatePresence>
+        <AIChatbot />
         <Footer />
       </div>
     </>

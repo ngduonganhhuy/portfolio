@@ -1,10 +1,11 @@
 import { NAV_LINKS, SOCIAL_LINKS } from "@/data/navigation";
+import { THEMES, getThemeById } from "@/data/themes";
 import useThemeSwitcher from "@/hooks/useThemeSwitcher";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { GithubIcon, LinkedInIcon, MoonIcon, SunIcon, TwitterIcon } from "./Icon";
+import { GithubIcon, LinkedInIcon, TwitterIcon } from "./Icon";
 import Logo from "./Logo";
 
 const ICON_MAP = {
@@ -12,6 +13,12 @@ const ICON_MAP = {
   github: GithubIcon,
   linkedin: LinkedInIcon,
 };
+
+const ChevronDownIcon = ({ className = "" }) => (
+  <svg aria-hidden="true" viewBox="0 0 20 20" className={className} fill="none">
+    <path d="m5 7.5 5 5 5-5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
 
 const CustomLink = ({ href, title, className = "" }) => {
   const router = useRouter();
@@ -48,16 +55,77 @@ const CustomMobileLink = ({ href, title, className = "", toggle }) => {
   );
 };
 
-const ThemeToggle = ({ mode, setMode, className = "" }) => (
-  <button
-    onClick={() => setMode(mode === "light" ? "dark" : "light")}
-    className={`flex items-center justify-center rounded-full p-1 ${
-      mode === "light" ? "bg-dark text-light" : "bg-light text-dark"
-    } ${className}`}
-  >
-    {mode === "dark" ? <SunIcon className="fill-dark" /> : <MoonIcon className="fill-dark" />}
-  </button>
-);
+const ThemeMenu = ({ themeId, setThemeId, className = "" }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const activeTheme = getThemeById(themeId);
+
+  const selectTheme = (nextThemeId) => {
+    setThemeId(nextThemeId);
+    setIsOpen(false);
+  };
+
+  return (
+    <div className={`relative ${className}`}>
+      <button
+        type="button"
+        onClick={() => setIsOpen((current) => !current)}
+        className="flex h-10 min-w-[128px] items-center justify-between gap-2 rounded-lg border border-dark/20 bg-light px-3 text-sm font-semibold text-dark transition hover:border-primary dark:border-light/20 dark:bg-dark dark:text-light dark:hover:border-primaryDark sm:min-w-[112px]"
+        aria-expanded={isOpen}
+        aria-label="Choose theme"
+      >
+        <span className="flex items-center gap-2">
+          <span className="flex -space-x-1">
+            {activeTheme.swatches.slice(0, 3).map((color) => (
+              <span
+                key={color}
+                className="h-3.5 w-3.5 rounded-full border border-dark/20 dark:border-light/20"
+                style={{ backgroundColor: color }}
+              />
+            ))}
+          </span>
+          <span>{activeTheme.name}</span>
+        </span>
+        <ChevronDownIcon className={`h-4 w-4 transition-transform ${isOpen ? "rotate-180" : ""}`} />
+      </button>
+
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0, y: -6 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.16, ease: "easeOut" }}
+          className="absolute right-0 top-12 z-50 w-48 rounded-lg border border-dark bg-light p-1 shadow-[4px_4px_0px_0px_#333333] dark:border-light dark:bg-dark dark:shadow-[4px_4px_0px_0px_#F2E7D5]"
+        >
+          {THEMES.map((theme) => {
+            const isActive = theme.id === activeTheme.id;
+            return (
+              <button
+                key={theme.id}
+                type="button"
+                onClick={() => selectTheme(theme.id)}
+                className={`flex w-full items-center justify-between gap-3 rounded-md px-3 py-2 text-left text-sm font-medium transition ${
+                  isActive
+                    ? "bg-dark text-light dark:bg-light dark:text-dark"
+                    : "text-dark hover:bg-dark/10 dark:text-light dark:hover:bg-light/10"
+                }`}
+              >
+                <span>{theme.name}</span>
+                <span className="flex gap-1">
+                  {theme.swatches.map((color) => (
+                    <span
+                      key={color}
+                      className="h-3 w-3 rounded-full border border-dark/20 dark:border-light/20"
+                      style={{ backgroundColor: color }}
+                    />
+                  ))}
+                </span>
+              </button>
+            );
+          })}
+        </motion.div>
+      )}
+    </div>
+  );
+};
 
 const SocialNav = ({ className = "", iconClassName = "" }) => (
   <nav className={`flex items-center justify-center flex-wrap ${className}`}>
@@ -81,7 +149,7 @@ const SocialNav = ({ className = "", iconClassName = "" }) => (
 );
 
 const NavBar = () => {
-  const [mode, setMode] = useThemeSwitcher();
+  const [themeId, setThemeId, isThemeMounted] = useThemeSwitcher();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen((prev) => !prev);
@@ -114,7 +182,9 @@ const NavBar = () => {
         </nav>
         <div className="flex items-center gap-1">
           <SocialNav iconClassName="w-6" />
-          <ThemeToggle mode={mode} setMode={setMode} className="ml-3" />
+          <div className="ml-3 h-10 min-w-[128px] sm:min-w-[112px]">
+            {isThemeMounted && <ThemeMenu themeId={themeId} setThemeId={setThemeId} />}
+          </div>
         </div>
       </div>
 
@@ -141,7 +211,9 @@ const NavBar = () => {
 
             <div className="mt-6 pt-6 border-t border-dark/20 dark:border-light/20 flex items-center justify-between">
               <SocialNav iconClassName="w-6" />
-              <ThemeToggle mode={mode} setMode={setMode} />
+              <div className="h-10 min-w-[128px] sm:min-w-[112px]">
+                {isThemeMounted && <ThemeMenu themeId={themeId} setThemeId={setThemeId} />}
+              </div>
             </div>
           </motion.div>
         </>
