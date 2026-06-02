@@ -19,6 +19,7 @@ const montserrat = Montserrat({
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
+  const hideSiteChrome = Component.hideSiteChrome;
 
   return (
     <>
@@ -28,10 +29,10 @@ export default function App({ Component, pageProps }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={`${montserrat.variable} font-mont bg-light dark:bg-dark w-full min-h-screen`}>
-        <IntroOverlay />
-        <ThemeDecorations />
-        <DogCursor />
-        <NavBar />
+        {!hideSiteChrome && <IntroOverlay />}
+        {!hideSiteChrome && <ThemeDecorations />}
+        {!hideSiteChrome && <DogCursor />}
+        {!hideSiteChrome && <NavBar />}
         <AnimatePresence mode="wait">
           <motion.div
             key={router.asPath}
@@ -43,8 +44,8 @@ export default function App({ Component, pageProps }) {
             <Component {...pageProps} />
           </motion.div>
         </AnimatePresence>
-        <AIChatbot />
-        <Footer />
+        {!hideSiteChrome && <AIChatbot />}
+        {!hideSiteChrome && <Footer />}
       </div>
     </>
   );
