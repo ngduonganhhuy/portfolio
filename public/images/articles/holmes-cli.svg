@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600" role="img" aria-labelledby="title desc">
+  <title id="title">Holmes CLI article cover</title>
+  <desc id="desc">A terminal inspired cover for Holmes CLI, a multi-language project scaffold generator.</desc>
+  <rect width="1200" height="600" fill="#f6f1e8"/>
+  <rect x="70" y="70" width="1060" height="460" fill="#09090b" stroke="#18181b" stroke-width="6"/>
+  <rect x="70" y="70" width="1060" height="62" fill="#18181b"/>
+  <circle cx="112" cy="101" r="13" fill="#ef4444"/>
+  <circle cx="153" cy="101" r="13" fill="#f59e0b"/>
+  <circle cx="194" cy="101" r="13" fill="#10b981"/>
+  <text x="242" y="108" fill="#a1a1aa" font-family="Menlo, Consolas, monospace" font-size="22" font-weight="700">cli.holmes.id.vn</text>
+  <text x="112" y="205" fill="#2dd4bf" font-family="Menlo, Consolas, monospace" font-size="38" font-weight="800">$</text>
+  <text x="160" y="205" fill="#f8fafc" font-family="Menlo, Consolas, monospace" font-size="38" font-weight="800">holmes new api --language go</text>
+  <text x="160" y="260" fill="#fde68a" font-family="Menlo, Consolas, monospace" font-size="28" font-weight="700">--template clean-architecture</text>
+  <text x="160" y="324" fill="#d4d4d8" font-family="Menlo, Consolas, monospace" font-size="28">Creating project scaffold</text>
+  <text x="160" y="374" fill="#d4d4d8" font-family="Menlo, Consolas, monospace" font-size="28">Writing template files</text>
+  <text x="160" y="424" fill="#5eead4" font-family="Menlo, Consolas, monospace" font-size="28" font-weight="800">Done. Your project is ready.</text>
+  <g transform="translate(805 210)">
+    <rect width="230" height="56" fill="#2dd4bf" stroke="#f8fafc" stroke-width="3"/>
+    <text x="28" y="37" fill="#09090b" font-family="Arial, sans-serif" font-size="25" font-weight="900">TypeScript</text>
+    <rect y="80" width="130" height="56" fill="#fbbf24" stroke="#f8fafc" stroke-width="3"/>
+    <text x="36" y="117" fill="#09090b" font-family="Arial, sans-serif" font-size="25" font-weight="900">Go</text>
+    <rect x="150" y="80" width="150" height="56" fill="#f8fafc" stroke="#f8fafc" stroke-width="3"/>
+    <text x="184" y="117" fill="#09090b" font-family="Arial, sans-serif" font-size="25" font-weight="900">Rust</text>
+    <rect y="160" width="170" height="56" fill="#f8fafc" stroke="#f8fafc" stroke-width="3"/>
+    <text x="32" y="197" fill="#09090b" font-family="Arial, sans-serif" font-size="25" font-weight="900">Swift</text>
+  </g>
+</svg>
