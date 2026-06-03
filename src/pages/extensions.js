@@ -11,7 +11,7 @@ import Link from "next/link";
 
 const ExtensionCard = ({ title, description, category, icon, link, github, tags }) => {
   return (
-    <article className="w-full flex flex-col items-start rounded-2xl border border-solid border-dark bg-light p-6 relative dark:bg-dark dark:border-light xs:p-4 shadow-[8px_8px_0px_0px_#333333] dark:shadow-[8px_8px_0px_0px_#F2E7D5]">
+    <article className="flex h-full w-full flex-col items-start rounded-2xl border border-solid border-dark bg-light p-6 relative dark:bg-dark dark:border-light xs:p-4 shadow-[8px_8px_0px_0px_#333333] dark:shadow-[8px_8px_0px_0px_#F2E7D5]">
 
       <div className="flex items-center gap-4 w-full mb-4">
         <div className="w-14 h-14 flex-shrink-0 relative rounded-xl overflow-hidden bg-gray-100 dark:bg-gray-700 flex items-center justify-center p-1">
@@ -100,10 +100,10 @@ const Extensions = () => {
         <p className="mb-12 text-dark/70 dark:text-light/70 text-lg sm:text-base">
           Tools and services I personally built and maintain.
         </p>
-        <div className="grid grid-cols-12 gap-8 xl:gap-6 md:gap-y-10 sm:gap-x-0">
+        <div className="grid grid-cols-12 auto-rows-fr gap-8 xl:gap-6 md:gap-y-10 sm:gap-x-0">
           {MY_EXTENSIONS.map((ext, index) => (
-            <div key={ext.title} className="col-span-4 xl:col-span-6 sm:col-span-12">
-              <ScrollReveal variant="fadeUp" delay={index * 0.1}>
+            <div key={ext.title} className="col-span-4 h-full xl:col-span-6 sm:col-span-12">
+              <ScrollReveal variant="fadeUp" delay={index * 0.1} className="h-full">
                 <ExtensionCard {...ext} />
               </ScrollReveal>
             </div>
@@ -120,10 +120,10 @@ const Extensions = () => {
         <p className="mb-12 text-dark/70 dark:text-light/70 text-lg sm:text-base">
           A curated collection of tools for ad blocking, DNS filtering, and online privacy.
         </p>
-        <div className="grid grid-cols-12 gap-8 xl:gap-6 md:gap-y-10 sm:gap-x-0">
+        <div className="grid grid-cols-12 auto-rows-fr gap-8 xl:gap-6 md:gap-y-10 sm:gap-x-0">
           {POPULAR_EXTENSIONS.map((ext, index) => (
-            <div key={ext.title} className="col-span-4 xl:col-span-6 sm:col-span-12">
-              <ScrollReveal variant="fadeUp" delay={(index % 3) * 0.1}>
+            <div key={ext.title} className="col-span-4 h-full xl:col-span-6 sm:col-span-12">
+              <ScrollReveal variant="fadeUp" delay={(index % 3) * 0.1} className="h-full">
                 <ExtensionCard {...ext} />
               </ScrollReveal>
             </div>
