@@ -8,6 +8,15 @@ export const MY_EXTENSIONS = [
     github: null,
     tags: ["DNS", "Ad Blocker", "Self-hosted"],
   },
+  {
+    title: "Holmes CLI",
+    description: "Project template generator for clean architecture boilerplates and starter projects across TypeScript, Go, Dart, Swift, Kotlin, Python, and more.",
+    category: "Developer Tool",
+    icon: "/images/cli/logo_holmes_cli.png",
+    link: "https://cli.holmes.id.vn",
+    github: "https://github.com/ngduonganhhuy/holmes-cli",
+    tags: ["CLI", "Boilerplate", "Starter Project", "Clean Architecture"],
+  },
 ];
 
 export const POPULAR_EXTENSIONS = [

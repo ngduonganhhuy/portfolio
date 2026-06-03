@@ -1,9 +1,12 @@
 import Head from "next/head";
+import Image from "next/image";
 import Link from "next/link";
 import { getKeywords } from "@/lib/seo";
 
 const REPO_URL = "https://github.com/ngduonganhhuy/holmes-cli";
 const PAGE_URL = "https://cli.holmes.id.vn";
+const CLI_LOGO_PATH = "/images/cli/logo_holmes_cli.png";
+const CLI_OG_IMAGE = "https://holmes.id.vn/images/cli/logo_holmes_cli.png";
 const PAGE_TITLE = "Holmes CLI | Clean Architecture Starter Project Generator";
 const PAGE_DESCRIPTION =
   "Holmes CLI generates clean architecture starter projects and boilerplates for TypeScript, Go, Rust, Python, Dart, Swift, Kotlin, Java, C#, PHP, and JavaScript.";
@@ -130,17 +133,31 @@ export default function HolmesCliPage() {
         <meta property="og:description" content={PAGE_DESCRIPTION} />
         <meta property="og:url" content={PAGE_URL} />
         <meta property="og:type" content="website" />
+        <meta property="og:image" content={CLI_OG_IMAGE} />
+        <meta property="og:image:secure_url" content={CLI_OG_IMAGE} />
+        <meta property="og:image:width" content="1254" />
+        <meta property="og:image:height" content="1254" />
+        <meta property="og:image:alt" content="Holmes CLI logo" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={PAGE_TITLE} />
         <meta name="twitter:description" content={PAGE_DESCRIPTION} />
+        <meta name="twitter:image" content={CLI_OG_IMAGE} />
       </Head>
 
       <main className="min-h-screen bg-[#f6f1e8] text-zinc-950">
         <section className="mx-auto grid min-h-screen w-full max-w-7xl grid-cols-[1fr_0.9fr] items-center gap-12 px-8 py-8 lg:grid-cols-1 lg:items-start lg:py-6 sm:px-5">
           <div className="flex min-h-[calc(100vh-4rem)] flex-col justify-between gap-10 lg:min-h-0">
             <header className="flex items-center justify-between gap-4">
-              <Link href="https://holmes.id.vn" className="text-sm font-black uppercase tracking-[0.18em]">
-                Holmes
+              <Link href="https://holmes.id.vn" className="inline-flex items-center gap-3 text-sm font-black uppercase tracking-[0.18em]">
+                <Image
+                  src={CLI_LOGO_PATH}
+                  alt="Holmes CLI"
+                  width={40}
+                  height={40}
+                  className="h-10 w-10 rounded-lg border border-zinc-950 bg-white object-cover"
+                  priority
+                />
+                Holmes CLI
               </Link>
               <a
                 href={REPO_URL}
@@ -154,9 +171,17 @@ export default function HolmesCliPage() {
             </header>
 
             <div className="max-w-3xl">
-              <p className="mb-5 inline-flex border border-zinc-950 bg-teal-300 px-3 py-1 text-sm font-black uppercase tracking-[0.16em]">
-                Holmes CLI
-              </p>
+              <div className="mb-5 inline-flex items-center gap-3 border border-zinc-950 bg-teal-300 px-3 py-2 text-sm font-black uppercase tracking-[0.16em]">
+                <Image
+                  src={CLI_LOGO_PATH}
+                  alt=""
+                  width={36}
+                  height={36}
+                  className="h-9 w-9 rounded-md border border-zinc-950 bg-white object-cover"
+                  priority
+                />
+                <span>Holmes CLI</span>
+              </div>
               <h1 className="text-7xl font-black leading-[0.95] tracking-normal xl:text-6xl md:text-5xl sm:text-4xl">
                 Generate project templates from the terminal.
               </h1>
