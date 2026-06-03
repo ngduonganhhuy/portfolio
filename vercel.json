@@ -1,0 +1,14 @@
+{
+  "redirects": [
+    {
+      "source": "/cli",
+      "destination": "https://cli.holmes.id.vn",
+      "permanent": true
+    },
+    {
+      "source": "/cli/:path*",
+      "destination": "https://cli.holmes.id.vn/:path*",
+      "permanent": true
+    }
+  ]
+}
