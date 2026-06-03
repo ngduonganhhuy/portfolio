@@ -1,5 +1,5 @@
 {
-  "rewrites": [
+  "redirects": [
     {
       "source": "/",
       "has": [
@@ -8,7 +8,8 @@
           "value": "cli.holmes.id.vn"
         }
       ],
-      "destination": "/cli"
+      "destination": "https://holmes.id.vn/cli",
+      "permanent": true
     }
   ]
 }
