@@ -9,6 +9,7 @@ export default function NotFound() {
     <>
       <Head>
         <title>404 — Page Not Found | Holmes</title>
+        <meta name="robots" content="noindex,nofollow" />
       </Head>
       <main className="flex w-full flex-col items-center justify-center min-h-screen dark:text-light">
         <Layout className="pt-16 flex flex-col items-center">

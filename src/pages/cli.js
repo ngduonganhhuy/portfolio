@@ -1,7 +1,20 @@
 import Head from "next/head";
 import Link from "next/link";
+import { getKeywords } from "@/lib/seo";
 
 const REPO_URL = "https://github.com/ngduonganhhuy/holmes-cli";
+const PAGE_URL = "https://cli.holmes.id.vn";
+const PAGE_TITLE = "Holmes CLI | Clean Architecture Starter Project Generator";
+const PAGE_DESCRIPTION =
+  "Holmes CLI generates clean architecture starter projects and boilerplates for TypeScript, Go, Rust, Python, Dart, Swift, Kotlin, Java, C#, PHP, and JavaScript.";
+const PAGE_KEYWORDS = getKeywords([
+  "Holmes CLI",
+  "clean architecture generator",
+  "starter project generator",
+  "boilerplate generator",
+  "Dart starter project",
+  "Flutter starter project",
+]);
 
 const TEMPLATE_LANGUAGES = [
   "TypeScript",
@@ -105,15 +118,21 @@ export default function HolmesCliPage() {
   return (
     <>
       <Head>
-        <title>Holmes CLI | Project template generator</title>
+        <title>{PAGE_TITLE}</title>
         <meta
           name="description"
-          content="Holmes CLI generates project scaffolding for TypeScript, Go, Rust, Python, Dart, Swift, Kotlin, Java, C#, PHP, and JavaScript."
+          content={PAGE_DESCRIPTION}
         />
-        <meta property="og:title" content="Holmes CLI" />
-        <meta property="og:description" content="Generate project scaffolding for multiple programming languages from one terminal command." />
-        <meta property="og:url" content="https://cli.holmes.id.vn" />
+        <meta name="keywords" content={PAGE_KEYWORDS} />
+        <meta name="robots" content="index,follow,max-image-preview:large" />
+        <link rel="canonical" href={PAGE_URL} />
+        <meta property="og:title" content={PAGE_TITLE} />
+        <meta property="og:description" content={PAGE_DESCRIPTION} />
+        <meta property="og:url" content={PAGE_URL} />
         <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={PAGE_TITLE} />
+        <meta name="twitter:description" content={PAGE_DESCRIPTION} />
       </Head>
 
       <main className="min-h-screen bg-[#f6f1e8] text-zinc-950">

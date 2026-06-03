@@ -2,6 +2,7 @@ import AnimatedText from "@/components/AnimatedText";
 import Layout from "@/components/Layout";
 import { SITE_AUTHOR, SITE_NAME, SITE_OG_IMAGE, SITE_TWITTER, SITE_URL } from "@/data/site";
 import { getAllArticles } from "@/lib/article";
+import { getBreadcrumbJsonLd, getKeywords } from "@/lib/seo";
 import { motion, useMotionValue } from "framer-motion";
 import Head from "next/head";
 import Image from "next/image";
@@ -9,8 +10,19 @@ import Link from "next/link";
 import { useRef } from "react";
 
 const PAGE_URL = `${SITE_URL}/articles`;
-const PAGE_TITLE = `Articles | ${SITE_NAME}`;
-const PAGE_DESCRIPTION = `Technical articles and insights on mobile development, Flutter, React Native, and software engineering by ${SITE_AUTHOR}.`;
+const PAGE_TITLE = `Flutter & Clean Architecture Articles | ${SITE_NAME}`;
+const PAGE_DESCRIPTION = `Technical articles on Flutter, clean architecture, boilerplate structure, starter projects, React Native, and software engineering by ${SITE_AUTHOR}.`;
+const PAGE_KEYWORDS = getKeywords([
+  "Flutter articles",
+  "clean architecture articles",
+  "Flutter boilerplate guide",
+  "starter project guide",
+  "clean code Flutter",
+]);
+const ARTICLES_JSON_LD = getBreadcrumbJsonLd([
+  { name: "Home", url: SITE_URL },
+  { name: "Articles", url: PAGE_URL },
+]);
 
 const FramerImage = motion(Image);
 
@@ -103,6 +115,8 @@ const Articles = ({ articles }) => {
       <Head>
         <title>{PAGE_TITLE}</title>
         <meta name="description" content={PAGE_DESCRIPTION} />
+        <meta name="keywords" content={PAGE_KEYWORDS} />
+        <meta name="robots" content="index,follow,max-image-preview:large" />
         <link rel="canonical" href={PAGE_URL} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={PAGE_URL} />
@@ -117,6 +131,10 @@ const Articles = ({ articles }) => {
         <meta name="twitter:title" content={PAGE_TITLE} />
         <meta name="twitter:description" content={PAGE_DESCRIPTION} />
         <meta name="twitter:image" content={SITE_OG_IMAGE} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(ARTICLES_JSON_LD) }}
+        />
       </Head>
       <main className="w-full mb-16 flex flex-col items-center justify-center overflow-hidden dark:text-light">
         <Layout className="pt-16">

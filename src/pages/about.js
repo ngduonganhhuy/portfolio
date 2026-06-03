@@ -5,6 +5,7 @@ import ScrollReveal from "@/components/ScrollReveal";
 import Section from "@/components/Section";
 import Skills from "@/components/Skills";
 import { SITE_NAME, SITE_OG_IMAGE, SITE_TWITTER, SITE_URL } from "@/data/site";
+import { getBreadcrumbJsonLd, getKeywords } from "@/lib/seo";
 import { useInView, useMotionValue, useSpring } from "framer-motion";
 import Head from "next/head";
 import Image from "next/image";
@@ -37,23 +38,46 @@ const STATS = [
   { val: 10, label: "Projects Completed", suffix: "+" },
   { val: 4, label: "Years Of Experience", suffix: "+" },
 ];
+const PAGE_URL = `${SITE_URL}/about`;
+const PAGE_TITLE = `About Nguyen Duong Anh Huy | Flutter Clean Architecture`;
+const PAGE_DESCRIPTION =
+  "About Nguyen Duong Anh Huy, a mobile developer with Flutter, React Native, clean architecture, boilerplate, starter project, and scalable app experience.";
+const PAGE_KEYWORDS = getKeywords([
+  "about Nguyen Duong Anh Huy",
+  "Flutter clean architecture developer",
+  "Flutter boilerplate developer",
+  "mobile solution architect",
+]);
+const ABOUT_JSON_LD = getBreadcrumbJsonLd([
+  { name: "Home", url: SITE_URL },
+  { name: "About", url: PAGE_URL },
+]);
 
 const About = () => {
   return (
     <>
       <Head>
-        <title>{`About | ${SITE_NAME}`}</title>
-        <meta name="description" content="Learn about Nguyen Duong Anh Huy — Mobile Developer with 4+ years of Flutter experience, passionate about clean code and scalable mobile architecture." />
-        <link rel="canonical" href={`${SITE_URL}/about`} />
+        <title>{PAGE_TITLE}</title>
+        <meta name="description" content={PAGE_DESCRIPTION} />
+        <meta name="keywords" content={PAGE_KEYWORDS} />
+        <meta name="robots" content="index,follow,max-image-preview:large" />
+        <link rel="canonical" href={PAGE_URL} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={`${SITE_URL}/about`} />
-        <meta property="og:title" content={`About | ${SITE_NAME}`} />
-        <meta property="og:description" content="Mobile Developer with 4+ years of Flutter experience, passionate about clean code and scalable mobile architecture." />
+        <meta property="og:url" content={PAGE_URL} />
+        <meta property="og:title" content={PAGE_TITLE} />
+        <meta property="og:description" content={PAGE_DESCRIPTION} />
         <meta property="og:site_name" content={SITE_NAME} />
         <meta property="og:image" content={SITE_OG_IMAGE} />
+        <meta property="og:image:alt" content="Nguyen Duong Anh Huy profile" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content={SITE_TWITTER} />
+        <meta name="twitter:title" content={PAGE_TITLE} />
+        <meta name="twitter:description" content={PAGE_DESCRIPTION} />
         <meta name="twitter:image" content={SITE_OG_IMAGE} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(ABOUT_JSON_LD) }}
+        />
       </Head>
 
       {/* Section 1: Bio */}
@@ -80,6 +104,11 @@ const About = () => {
               architectural patterns, and industry best practices. My commitment
               to professional growth enables me to deliver high-quality solutions
               that align with both technical and business objectives.
+            </p>
+            <p className="font-medium">
+              My strongest mobile work centers on Flutter, Dart, React Native,
+              clean architecture, reusable boilerplate foundations, and starter
+              project structures that help teams ship maintainable apps faster.
             </p>
           </ScrollReveal>
 

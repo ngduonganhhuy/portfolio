@@ -7,9 +7,15 @@ summary: Learn practical tips for writing clean, maintainable, and scalable Flut
 tags:
   - Flutter
   - Clean Code
+  - Clean Architecture
+  - Flutter Boilerplate
+  - Starter Project
+  - Dart
 ---
 
 📖 Flutter is an open-source mobile application development SDK created by Google, facilitates cross-platform app creation for Android and iOS. Writing clean code with Flutter can be tricky, particularly for novices in the framework or Dart. In this article, we'll share tips for crafting clear, maintainable, and scalable Flutter code.
+
+These practices also apply when shaping a Flutter clean architecture boilerplate or starter project, because small naming, decomposition, and dependency choices become the foundation for scalable mobile apps.
 
 ### Why clean code with Flutter ?
 

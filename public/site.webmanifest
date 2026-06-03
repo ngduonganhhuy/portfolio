@@ -1,0 +1,21 @@
+{
+  "name": "Holmes - Flutter & Mobile Developer Portfolio",
+  "short_name": "Holmes",
+  "description": "Nguyen Duong Anh Huy's Flutter, clean architecture, boilerplate, starter project, and mobile developer portfolio.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f2e7d5",
+  "theme_color": "#db2777",
+  "icons": [
+    {
+      "src": "/ico/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/ico/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

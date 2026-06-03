@@ -3,13 +3,54 @@ import { GithubIcon } from "@/components/Icon";
 import ScrollReveal from "@/components/ScrollReveal";
 import Section from "@/components/Section";
 import { FEATURED_PROJECTS, PROJECTS } from "@/data/projects";
-import { SITE_NAME, SITE_OG_IMAGE, SITE_TWITTER, SITE_URL } from "@/data/site";
+import { SITE_NAME, SITE_OG_IMAGE, SITE_URL } from "@/data/site";
+import {
+  getBreadcrumbJsonLd,
+  getKeywords,
+  getPersonJsonLd,
+  getTwitterSite,
+} from "@/lib/seo";
 import { motion } from "framer-motion";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 
 const FramerImage = motion(Image);
+const PAGE_URL = `${SITE_URL}/projects`;
+const PAGE_TITLE = `Flutter Projects & Mobile Starter Work | ${SITE_NAME}`;
+const PAGE_DESCRIPTION =
+  "Explore Flutter, React Native, clean architecture, boilerplate, and starter project experience from Nguyen Duong Anh Huy's mobile developer portfolio.";
+const PAGE_KEYWORDS = getKeywords([
+  "Flutter projects",
+  "Flutter clean architecture projects",
+  "Flutter boilerplate examples",
+  "starter project portfolio",
+  "mobile app starter project",
+  "clean architech portfolio",
+]);
+const PROJECTS_JSON_LD = [
+  getBreadcrumbJsonLd([
+    { name: "Home", url: SITE_URL },
+    { name: "Projects", url: PAGE_URL },
+  ]),
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
+    url: PAGE_URL,
+    author: getPersonJsonLd(),
+    mainEntity: {
+      "@type": "ItemList",
+      itemListElement: [...FEATURED_PROJECTS, ...PROJECTS].map((project, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: project.title,
+        url: project.link || PAGE_URL,
+      })),
+    },
+  },
+];
 
 const ProjectImage = ({ img, title, link, priority = false, fill = false, width, height }) => {
   const image = fill ? (
@@ -120,18 +161,27 @@ const Projects = () => {
   return (
     <>
       <Head>
-        <title>{`Projects | ${SITE_NAME}`}</title>
-        <meta name="description" content="A showcase of mobile and web projects by Nguyen Duong Anh Huy — including Flutter apps, React Native, and full-stack solutions." />
-        <link rel="canonical" href={`${SITE_URL}/projects`} />
+        <title>{PAGE_TITLE}</title>
+        <meta name="description" content={PAGE_DESCRIPTION} />
+        <meta name="keywords" content={PAGE_KEYWORDS} />
+        <meta name="robots" content="index,follow,max-image-preview:large" />
+        <link rel="canonical" href={PAGE_URL} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={`${SITE_URL}/projects`} />
-        <meta property="og:title" content={`Projects | ${SITE_NAME}`} />
-        <meta property="og:description" content="A showcase of mobile and web projects — including Flutter apps, React Native, and full-stack solutions." />
+        <meta property="og:url" content={PAGE_URL} />
+        <meta property="og:title" content={PAGE_TITLE} />
+        <meta property="og:description" content={PAGE_DESCRIPTION} />
         <meta property="og:site_name" content={SITE_NAME} />
         <meta property="og:image" content={SITE_OG_IMAGE} />
+        <meta property="og:image:alt" content="Flutter and mobile projects by Nguyen Duong Anh Huy" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content={SITE_TWITTER} />
+        <meta name="twitter:site" content={getTwitterSite()} />
+        <meta name="twitter:title" content={PAGE_TITLE} />
+        <meta name="twitter:description" content={PAGE_DESCRIPTION} />
         <meta name="twitter:image" content={SITE_OG_IMAGE} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(PROJECTS_JSON_LD) }}
+        />
       </Head>
 
       {/* Section 1: Featured Projects */}

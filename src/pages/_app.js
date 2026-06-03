@@ -27,6 +27,10 @@ export default function App({ Component, pageProps }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="google-site-verification" content="WPQ-Hwe1ebuIznz2anSsPjojb2FaRTGCH12qTPrELME" />
         <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/ico/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/ico/favicon-16x16.png" />
+        <link rel="apple-touch-icon" href="/ico/apple-touch-icon.png" />
+        <link rel="manifest" href="/site.webmanifest" />
       </Head>
       <div className={`${montserrat.variable} font-mont bg-light dark:bg-dark w-full min-h-screen`}>
         {!hideSiteChrome && <IntroOverlay />}

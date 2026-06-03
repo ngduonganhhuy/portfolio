@@ -1,6 +1,7 @@
 import Layout from "@/components/Layout";
 import { SITE_AUTHOR, SITE_NAME, SITE_TWITTER, SITE_URL } from "@/data/site";
 import { getAllSlugs, getArticleBySlug } from "@/lib/article";
+import { getBreadcrumbJsonLd, getKeywords } from "@/lib/seo";
 import Head from "next/head";
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
@@ -12,33 +13,43 @@ export default function ArticleDetail({ frontmatter, content, slug }) {
   const ogImage = frontmatter.cover
     ? `${SITE_URL}${frontmatter.cover}`
     : null;
+  const keywords = getKeywords(frontmatter.tags || []);
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: frontmatter.title,
-    description: frontmatter.description,
-    datePublished: frontmatter.date,
-    author: {
-      "@type": "Person",
-      name: SITE_AUTHOR,
-      url: SITE_URL,
+  const jsonLd = [
+    getBreadcrumbJsonLd([
+      { name: "Home", url: SITE_URL },
+      { name: "Articles", url: `${SITE_URL}/articles` },
+      { name: frontmatter.title, url: canonicalUrl },
+    ]),
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: frontmatter.title,
+      description: frontmatter.description,
+      datePublished: frontmatter.date,
+      author: {
+        "@type": "Person",
+        name: SITE_AUTHOR,
+        url: SITE_URL,
+      },
+      publisher: {
+        "@type": "Person",
+        name: SITE_AUTHOR,
+        url: SITE_URL,
+      },
+      url: canonicalUrl,
+      keywords,
+      ...(ogImage && { image: ogImage }),
     },
-    publisher: {
-      "@type": "Person",
-      name: SITE_AUTHOR,
-      url: SITE_URL,
-    },
-    url: canonicalUrl,
-    ...(ogImage && { image: ogImage }),
-    ...(frontmatter.tags && { keywords: frontmatter.tags.join(", ") }),
-  };
+  ];
 
   return (
     <>
       <Head>
         <title>{`${frontmatter.title} | ${SITE_NAME}`}</title>
         <meta name="description" content={frontmatter.description} />
+        <meta name="keywords" content={keywords} />
+        <meta name="robots" content="index,follow,max-image-preview:large" />
         <link rel="canonical" href={canonicalUrl} />
 
         {/* Open Graph */}
@@ -48,6 +59,7 @@ export default function ArticleDetail({ frontmatter, content, slug }) {
         <meta property="og:description" content={frontmatter.description} />
         <meta property="og:site_name" content={SITE_NAME} />
         {ogImage && <meta property="og:image" content={ogImage} />}
+        {ogImage && <meta property="og:image:alt" content={frontmatter.title} />}
         {ogImage && <meta property="og:image:width" content="1200" />}
         {ogImage && <meta property="og:image:height" content="600" />}
         {frontmatter.date && (

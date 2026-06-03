@@ -5,8 +5,15 @@ import Layout from "@/components/Layout";
 import ScrollReveal from "@/components/ScrollReveal";
 import { SOCIAL_LINKS } from "@/data/navigation";
 import { FEATURED_PROJECTS, PROJECTS } from "@/data/projects";
-import { SITE_NAME, SITE_OG_IMAGE, SITE_TWITTER, SITE_URL } from "@/data/site";
+import { SITE_NAME, SITE_OG_IMAGE, SITE_URL } from "@/data/site";
 import { SKILLS } from "@/data/skills";
+import {
+  DEFAULT_SEO,
+  getKeywords,
+  getPersonJsonLd,
+  getTwitterSite,
+  getWebsiteJsonLd,
+} from "@/lib/seo";
 import { AnimatePresence, motion } from "framer-motion";
 import Head from "next/head";
 import Image from "next/image";
@@ -48,17 +55,28 @@ const PROJECT_INSIGHTS = {
 const SYSTEM_NOTES = [
   {
     title: "Builds production mobile products",
-    body: "Flutter, React Native, clean architecture, app-store delivery, and long-running product maintenance.",
+    body: "Flutter, React Native, clean architecture, app-store delivery, reusable boilerplate thinking, and long-running product maintenance.",
   },
   {
-    title: "Thinks beyond UI delivery",
-    body: "The portfolio emphasizes product context, tradeoffs, architecture, and the business problem behind each build.",
+    title: "Designs starter projects that can scale",
+    body: "The portfolio emphasizes product context, clean architecture tradeoffs, starter project structure, and the business problem behind each build.",
   },
   {
     title: "AI-readable public profile",
     body: "Holmes AI uses the public profile, projects, experience, articles, and skills as its answer base.",
   },
 ];
+
+const HOME_TITLE = DEFAULT_SEO.title;
+const HOME_DESCRIPTION = DEFAULT_SEO.description;
+const HOME_KEYWORDS = getKeywords([
+  "Flutter clean architech",
+  "Flutter app starter",
+  "Flutter template",
+  "Dart clean architecture",
+  "mobile starter project",
+]);
+const HOME_JSON_LD = [getPersonJsonLd(), getWebsiteJsonLd()];
 
 const Icon = ({ children, className = "" }) => (
   <svg aria-hidden="true" viewBox="0 0 24 24" className={className} fill="none">
@@ -611,18 +629,28 @@ function LiteHome() {
   return (
     <>
       <Head>
-        <title>{`${SITE_NAME} | Mobile Developer Portfolio`}</title>
-        <meta name="description" content="Nguyen Duong Anh Huy — Mobile Developer specializing in Flutter and React Native. Building scalable, high-quality cross-platform apps." />
+        <title>{HOME_TITLE}</title>
+        <meta name="description" content={HOME_DESCRIPTION} />
+        <meta name="keywords" content={HOME_KEYWORDS} />
+        <meta name="author" content="Nguyen Duong Anh Huy" />
+        <meta name="robots" content="index,follow,max-image-preview:large" />
         <link rel="canonical" href={SITE_URL} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={SITE_URL} />
-        <meta property="og:title" content={`${SITE_NAME} | Mobile Developer Portfolio`} />
-        <meta property="og:description" content="Mobile Developer specializing in Flutter and React Native. Building scalable, high-quality cross-platform apps." />
+        <meta property="og:title" content={HOME_TITLE} />
+        <meta property="og:description" content={HOME_DESCRIPTION} />
         <meta property="og:site_name" content={SITE_NAME} />
         <meta property="og:image" content={SITE_OG_IMAGE} />
+        <meta property="og:image:alt" content="Nguyen Duong Anh Huy mobile developer portfolio" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content={SITE_TWITTER} />
+        <meta name="twitter:site" content={getTwitterSite()} />
+        <meta name="twitter:title" content={HOME_TITLE} />
+        <meta name="twitter:description" content={HOME_DESCRIPTION} />
         <meta name="twitter:image" content={SITE_OG_IMAGE} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(HOME_JSON_LD) }}
+        />
       </Head>
       <main className="relative flex min-h-screen w-full items-start overflow-visible text-dark dark:text-light">
         <Layout className="pt-0 md:pt-16 sm:pt-8">
@@ -983,27 +1011,28 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>{`${SITE_NAME} | Holmes OS Portfolio`}</title>
-        <meta
-          name="description"
-          content="Nguyen Duong Anh Huy's interactive portfolio OS with mobile projects, skill map, build notes, and Holmes AI."
-        />
+        <title>{HOME_TITLE}</title>
+        <meta name="description" content={HOME_DESCRIPTION} />
+        <meta name="keywords" content={HOME_KEYWORDS} />
+        <meta name="author" content="Nguyen Duong Anh Huy" />
+        <meta name="robots" content="index,follow,max-image-preview:large" />
         <link rel="canonical" href={SITE_URL} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={SITE_URL} />
-        <meta
-          property="og:title"
-          content={`${SITE_NAME} | Holmes OS Portfolio`}
-        />
-        <meta
-          property="og:description"
-          content="Interactive portfolio OS for mobile engineering proof, projects, skills, and AI-assisted discovery."
-        />
+        <meta property="og:title" content={HOME_TITLE} />
+        <meta property="og:description" content={HOME_DESCRIPTION} />
         <meta property="og:site_name" content={SITE_NAME} />
         <meta property="og:image" content={SITE_OG_IMAGE} />
+        <meta property="og:image:alt" content="Nguyen Duong Anh Huy mobile developer portfolio" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content={SITE_TWITTER} />
+        <meta name="twitter:site" content={getTwitterSite()} />
+        <meta name="twitter:title" content={HOME_TITLE} />
+        <meta name="twitter:description" content={HOME_DESCRIPTION} />
         <meta name="twitter:image" content={SITE_OG_IMAGE} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(HOME_JSON_LD) }}
+        />
       </Head>
 
       <section className="portfolio-os w-full bg-light px-8 py-10 text-dark dark:bg-dark dark:text-light xl:px-5 sm:px-3">

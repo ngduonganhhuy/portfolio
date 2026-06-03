@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://holmes.id.vn/sitemap.xml

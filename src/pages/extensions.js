@@ -4,6 +4,7 @@ import ScrollReveal from "@/components/ScrollReveal";
 import Section from "@/components/Section";
 import { MY_EXTENSIONS, POPULAR_EXTENSIONS } from "@/data/extensions";
 import { SITE_NAME, SITE_OG_IMAGE, SITE_TWITTER, SITE_URL } from "@/data/site";
+import { getKeywords } from "@/lib/seo";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
@@ -61,11 +62,20 @@ const ExtensionCard = ({ title, description, category, icon, link, github, tags 
 };
 
 const Extensions = () => {
+  const pageKeywords = getKeywords([
+    "developer tools",
+    "browser extensions",
+    "DNS filter",
+    "ad blocker",
+  ]);
+
   return (
     <>
       <Head>
         <title>{`Extensions | ${SITE_NAME}`}</title>
         <meta name="description" content="A curated list of useful tools and browser extensions — ad blockers, DNS filters, security utilities and more." />
+        <meta name="keywords" content={pageKeywords} />
+        <meta name="robots" content="index,follow,max-image-preview:large" />
         <link rel="canonical" href={`${SITE_URL}/extensions`} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={`${SITE_URL}/extensions`} />
@@ -73,8 +83,11 @@ const Extensions = () => {
         <meta property="og:description" content="Curated tools and extensions for blocking ads, DNS filtering, and online privacy." />
         <meta property="og:site_name" content={SITE_NAME} />
         <meta property="og:image" content={SITE_OG_IMAGE} />
+        <meta property="og:image:alt" content="Holmes developer tools and extensions" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content={SITE_TWITTER} />
+        <meta name="twitter:title" content={`Extensions | ${SITE_NAME}`} />
+        <meta name="twitter:description" content="Curated tools and extensions for blocking ads, DNS filtering, and online privacy." />
         <meta name="twitter:image" content={SITE_OG_IMAGE} />
       </Head>
 

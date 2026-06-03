@@ -2,13 +2,21 @@ import AnimatedText from "@/components/AnimatedText";
 import Section from "@/components/Section";
 import { SITE_NAME, SITE_OG_IMAGE, SITE_TWITTER, SITE_URL } from "@/data/site";
 import { getAllEbooks } from "@/lib/ebooks";
+import { getKeywords } from "@/lib/seo";
 import Head from "next/head";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 const PAGE_URL = `${SITE_URL}/ebooks`;
 const PAGE_TITLE = `Ebooks | ${SITE_NAME}`;
-const PAGE_DESCRIPTION = "Read curated software engineering ebooks directly on Holmes portfolio.";
+const PAGE_DESCRIPTION = "Read curated software engineering ebooks on clean code, system design, TDD, design patterns, and scalable architecture directly on Holmes portfolio.";
+const PAGE_KEYWORDS = getKeywords([
+  "software engineering ebooks",
+  "clean code ebook",
+  "system design ebook",
+  "TDD ebook",
+  "architecture ebooks",
+]);
 
 const getBookStorageKey = (book) => `ebooks:${book.fileName}:page`;
 const PDFJS_VERSION = "3.11.174";
@@ -427,6 +435,8 @@ export default function Ebooks({ ebooks }) {
       <Head>
         <title>{PAGE_TITLE}</title>
         <meta name="description" content={PAGE_DESCRIPTION} />
+        <meta name="keywords" content={PAGE_KEYWORDS} />
+        <meta name="robots" content="index,follow,max-image-preview:large" />
         <link rel="canonical" href={PAGE_URL} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={PAGE_URL} />
@@ -434,8 +444,11 @@ export default function Ebooks({ ebooks }) {
         <meta property="og:description" content={PAGE_DESCRIPTION} />
         <meta property="og:site_name" content={SITE_NAME} />
         <meta property="og:image" content={SITE_OG_IMAGE} />
+        <meta property="og:image:alt" content="Holmes software engineering ebook library" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content={SITE_TWITTER} />
+        <meta name="twitter:title" content={PAGE_TITLE} />
+        <meta name="twitter:description" content={PAGE_DESCRIPTION} />
         <meta name="twitter:image" content={SITE_OG_IMAGE} />
       </Head>
 
