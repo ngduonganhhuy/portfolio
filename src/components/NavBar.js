@@ -215,10 +215,10 @@ const NavBar = () => {
   const close = () => setIsOpen(false);
 
   return (
-    <header className="w-full px-32 py-8 font-medium flex items-center justify-between dark:text-light bg-light dark:bg-dark lg:px-16 md:px-12 sm:px-8">
+    <header className="w-full px-32 py-8 font-medium flex items-center justify-between dark:text-light bg-light dark:bg-dark xl:px-16 md:px-12 sm:px-8">
       {/* Hamburger — mobile only */}
       <button
-        className="flex-col justify-center items-center hidden lg:flex z-50 relative"
+        className="flex-col justify-center items-center hidden xl:flex z-50 relative"
         onClick={toggle}
         aria-label="Toggle menu"
       >
@@ -228,7 +228,7 @@ const NavBar = () => {
       </button>
 
       {/* Desktop nav */}
-      <div className="w-full flex justify-between items-center lg:hidden">
+      <div className="w-full flex justify-between items-center xl:hidden">
         <nav>
           {NAV_LINKS.map(({ href, title }, i) => (
             <CustomLink
@@ -253,7 +253,7 @@ const NavBar = () => {
         <>
           {/* Backdrop */}
           <div
-            className="fixed inset-0 bg-black/40 z-40 lg:block hidden"
+            className="fixed inset-0 bg-black/40 z-40 xl:block hidden"
             onClick={close}
           />
           <motion.div
@@ -261,7 +261,7 @@ const NavBar = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
-            className="fixed top-0 left-0 right-0 z-40 bg-light dark:bg-dark shadow-2xl px-8 pt-24 pb-8 hidden lg:flex flex-col gap-1 border-b border-dark/10 dark:border-light/10"
+            className="fixed top-0 left-0 right-0 z-40 bg-light dark:bg-dark shadow-2xl px-8 pt-24 pb-8 hidden xl:flex flex-col gap-1 border-b border-dark/10 dark:border-light/10"
           >
             <nav className="flex flex-col">
               {NAV_LINKS.map(({ href, title }) => (

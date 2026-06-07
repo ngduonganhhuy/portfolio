@@ -77,6 +77,7 @@ const HOME_KEYWORDS = getKeywords([
   "mobile starter project",
 ]);
 const HOME_JSON_LD = [getPersonJsonLd(), getWebsiteJsonLd()];
+const LITE_ONLY_VIEWPORT_QUERY = "(max-width: 1279px)";
 
 const Icon = ({ children, className = "" }) => (
   <svg aria-hidden="true" viewBox="0 0 24 24" className={className} fill="none">
@@ -856,7 +857,7 @@ export default function Home() {
   const [query, setQuery] = useState("");
   const [isLiteMode, setIsLiteMode] = useState(false);
   const [isLiteModeMounted, setIsLiteModeMounted] = useState(false);
-  const [isMobileViewport, setIsMobileViewport] = useState(false);
+  const [isLiteOnlyViewport, setIsLiteOnlyViewport] = useState(false);
   const viewButtonRefs = useRef({});
 
   const changeActiveView = useCallback((nextView) => {
@@ -981,12 +982,12 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    const mobileQuery = window.matchMedia("(max-width: 767px)");
-    const syncMobileViewport = () => {
-      const isMobile = mobileQuery.matches;
-      setIsMobileViewport(isMobile);
+    const liteOnlyQuery = window.matchMedia(LITE_ONLY_VIEWPORT_QUERY);
+    const syncLiteOnlyViewport = () => {
+      const isLiteOnly = liteOnlyQuery.matches;
+      setIsLiteOnlyViewport(isLiteOnly);
 
-      if (isMobile) {
+      if (isLiteOnly) {
         window.localStorage.setItem("portfolioLiteMode", "true");
         setIsLiteMode(true);
         setIsLiteModeMounted(true);
@@ -998,13 +999,13 @@ export default function Home() {
       }
     };
 
-    syncMobileViewport();
-    mobileQuery.addEventListener("change", syncMobileViewport);
+    syncLiteOnlyViewport();
+    liteOnlyQuery.addEventListener("change", syncLiteOnlyViewport);
 
-    return () => mobileQuery.removeEventListener("change", syncMobileViewport);
+    return () => liteOnlyQuery.removeEventListener("change", syncLiteOnlyViewport);
   }, []);
 
-  if (isLiteModeMounted && (isLiteMode || isMobileViewport)) {
+  if (isLiteModeMounted && (isLiteMode || isLiteOnlyViewport)) {
     return <LiteHome />;
   }
 
