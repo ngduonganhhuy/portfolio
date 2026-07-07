@@ -7,6 +7,7 @@ import { SOCIAL_LINKS } from "@/data/navigation";
 import { FEATURED_PROJECTS, PROJECTS } from "@/data/projects";
 import { SITE_NAME, SITE_OG_IMAGE, SITE_URL } from "@/data/site";
 import { SKILLS } from "@/data/skills";
+import { loadCVData, useBuildCV } from "@/hooks/useBuildCV";
 import {
   DEFAULT_SEO,
   getKeywords,
@@ -31,8 +32,6 @@ const NAV_ITEMS = [
 ];
 
 const FILTERS = ["All", "Mobile", "Frontend", "Web3", "Private"];
-const RESUME_PDF_PATH = "/NguyenDuongAnhHuy_SoftwareEngineer.pdf";
-const RESUME_FILE_NAME = "NguyenDuongAnhHuy_SoftwareEngineer.pdf";
 
 const QUICK_PROMPTS = [
   "Summarize Holmes in 30 seconds",
@@ -127,13 +126,17 @@ const INITIAL_MESSAGES = [
   },
 ];
 
-function downloadResumePdf() {
-  const link = document.createElement("a");
-  link.href = RESUME_PDF_PATH;
-  link.download = RESUME_FILE_NAME;
-  document.body.appendChild(link);
-  link.click();
-  link.remove();
+function ResumeDownloadButton({ className, children }) {
+  const { downloadPDF, isLoading } = useBuildCV();
+  return (
+    <button
+      onClick={() => downloadPDF(loadCVData())}
+      disabled={isLoading}
+      className={className}
+    >
+      {children}
+    </button>
+  );
 }
 
 function classifyProject(project) {
@@ -320,13 +323,9 @@ function TopBar({ onOpenCommand }) {
           <StatusDot tone="green" />
           Available
         </span>
-        <Link
-          href={RESUME_PDF_PATH}
-          download={RESUME_FILE_NAME}
-          className="flex items-center gap-1 rounded-lg bg-dark px-4 py-2 font-bold text-light dark:bg-light dark:text-dark"
-        >
+        <ResumeDownloadButton className="flex items-center gap-1 rounded-lg bg-dark px-4 py-2 font-bold text-light dark:bg-light dark:text-dark disabled:opacity-60">
           Resume <LinkArrow className="h-5 w-5" />
-        </Link>
+        </ResumeDownloadButton>
       </div>
     </header>
   );
@@ -683,14 +682,9 @@ function LiteHome() {
                 cloud-native applications, and modern engineering practices.
               </p>
               <div className="mt-2 flex items-center self-start lg:self-center">
-                <Link
-                  href={RESUME_PDF_PATH}
-                  target="_blank"
-                  className="flex items-center rounded-lg border border-solid border-transparent bg-dark p-2.5 px-6 text-lg font-semibold text-light hover:border-dark hover:bg-light hover:text-dark dark:bg-light dark:text-dark hover:dark:border-light hover:dark:bg-dark hover:dark:text-light md:p-2 md:px-4 md:text-base"
-                  download={RESUME_FILE_NAME}
-                >
+                <ResumeDownloadButton className="flex items-center rounded-lg border border-solid border-transparent bg-dark p-2.5 px-6 text-lg font-semibold text-light hover:border-dark hover:bg-light hover:text-dark dark:bg-light dark:text-dark hover:dark:border-light hover:dark:bg-dark hover:dark:text-light disabled:opacity-60 md:p-2 md:px-4 md:text-base">
                   Resume <LinkArrow className="ml-1 w-6" />
-                </Link>
+                </ResumeDownloadButton>
                 <Link
                   href="mailto:ngduonganhhuy@gmail.com"
                   target="_blank"
@@ -853,6 +847,7 @@ function AssistantPanel() {
 export default function Home() {
   const [activeView, setActiveView] = useState("profile");
   const [activeFilter, setActiveFilter] = useState("All");
+  const { downloadPDF } = useBuildCV();
   const [isCommandOpen, setIsCommandOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [isLiteMode, setIsLiteMode] = useState(false);
@@ -914,7 +909,7 @@ export default function Home() {
         label: "Open resume",
         meta: "Software Engineer PDF",
         group: "Contact",
-        action: downloadResumePdf,
+        action: () => downloadPDF(loadCVData()),
       },
     ];
   }, [changeActiveView]);

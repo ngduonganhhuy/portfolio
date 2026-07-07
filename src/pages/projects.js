@@ -42,17 +42,27 @@ const PROJECTS_JSON_LD = [
     author: getPersonJsonLd(),
     mainEntity: {
       "@type": "ItemList",
-      itemListElement: [...FEATURED_PROJECTS, ...PROJECTS].map((project, index) => ({
-        "@type": "ListItem",
-        position: index + 1,
-        name: project.title,
-        url: project.link || PAGE_URL,
-      })),
+      itemListElement: [...FEATURED_PROJECTS, ...PROJECTS].map(
+        (project, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: project.title,
+          url: project.link || PAGE_URL,
+        }),
+      ),
     },
   },
 ];
 
-const ProjectImage = ({ img, title, link, priority = false, fill = false, width, height }) => {
+const ProjectImage = ({
+  img,
+  title,
+  link,
+  priority = false,
+  fill = false,
+  width,
+  height,
+}) => {
   const image = fill ? (
     <FramerImage
       src={img}
@@ -78,7 +88,11 @@ const ProjectImage = ({ img, title, link, priority = false, fill = false, width,
 
   if (!link) return image;
   return (
-    <Link href={link} target="_blank" className="w-full cursor-pointer overflow-hidden rounded-lg">
+    <Link
+      href={link}
+      target="_blank"
+      className="w-full cursor-pointer overflow-hidden rounded-lg"
+    >
       {image}
     </Link>
   );
@@ -86,21 +100,40 @@ const ProjectImage = ({ img, title, link, priority = false, fill = false, width,
 
 const FeaturedProject = ({ type, title, summary, img, link, github }) => {
   return (
-    <article className="w-full flex items-center justify-between relative rounded-br-2xl rounded-3xl border border-solid border-dark bg-light p-12 dark:bg-dark dark:border-light lg:flex-col lg:p-8 xs:rounded-2xl xs:rounded-br-3xl xs:p-4 shadow-[8px_8px_0px_0px_#333333] dark:shadow-[8px_8px_0px_0px_#F2E7D5]">
+    <article className="w-full flex items-center justify-between relative rounded-br-2xl rounded-3xl border border-solid border-dark bg-light p-12 dark:bg-dark dark:border-light lg:flex-col lg:p-8 xs:rounded-2xl xs:rounded-br-3xl xs:p-4 shadow-[8px_8px_0px_0px_#333333] dark:shadow-[8px_8px_0px_0px_#F2E7D5] m-4">
       <div className="w-1/2 cursor-pointer overflow-hidden rounded-lg flex justify-center shadow-md drop-shadow-sm lg:w-full">
-        <ProjectImage img={img} title={title} link={link} priority width={600} height={400} />
+        <ProjectImage
+          img={img}
+          title={title}
+          link={link}
+          priority
+          width={600}
+          height={400}
+        />
       </div>
 
       <div className="w-1/2 flex flex-col items-start justify-between pl-6 lg:w-full lg:pl-0 lg:pt-6">
-        <span className="text-primary dark:text-primaryDark font-medium text-xl xs:text-base">{type}</span>
+        <span className="text-primary dark:text-primaryDark font-medium text-xl xs:text-base">
+          {type}
+        </span>
         {link ? (
-          <Link href={link} target="_blank" className="hover:underline underline-offset-2">
-            <h2 className="my-2 w-full text-left text-4xl font-bold dark:text-light sm:text-sm">{title}</h2>
+          <Link
+            href={link}
+            target="_blank"
+            className="hover:underline underline-offset-2"
+          >
+            <h2 className="my-2 w-full text-left text-4xl font-bold dark:text-light sm:text-sm">
+              {title}
+            </h2>
           </Link>
         ) : (
-          <h2 className="my-2 w-full text-left text-4xl font-bold dark:text-light sm:text-sm">{title}</h2>
+          <h2 className="my-2 w-full text-left text-4xl font-bold dark:text-light sm:text-sm">
+            {title}
+          </h2>
         )}
-        <p className="my-2 font-medium text-dark dark:text-light sm:text-sm">{summary}</p>
+        <p className="my-2 font-medium text-dark dark:text-light sm:text-sm">
+          {summary}
+        </p>
         <div className="mt-2 flex items-center gap-4">
           {github && (
             <Link href={github} target="_blank" className="w-10">
@@ -108,7 +141,11 @@ const FeaturedProject = ({ type, title, summary, img, link, github }) => {
             </Link>
           )}
           {link ? (
-            <Link href={link} target="_blank" className="rounded-lg bg-dark text-light p-2 px-6 text-lg font-semibold dark:bg-light dark:text-dark sm:px-4 sm:text-base">
+            <Link
+              href={link}
+              target="_blank"
+              className="rounded-lg bg-dark text-light p-2 px-6 text-lg font-semibold dark:bg-light dark:text-dark sm:px-4 sm:text-base"
+            >
               Visit
             </Link>
           ) : (
@@ -130,21 +167,37 @@ const Project = ({ title, type, img, link, github }) => {
       </div>
 
       <div className="w-full flex flex-col items-start justify-between">
-        <span className="text-primary dark:text-primaryDark font-medium text-xl lg:text-lg md:text-base text-clip pt-5">{type}</span>
+        <span className="text-primary dark:text-primaryDark font-medium text-xl lg:text-lg md:text-base text-clip pt-5">
+          {type}
+        </span>
         {link ? (
-          <Link href={link} target="_blank" className="hover:underline underline-offset-2">
-            <h2 className="my-2 w-full text-left text-3xl font-bold lg:text-2xl lg:truncate lg:text-ellipsis lg:w-[90%] sm:w-full">{title}</h2>
+          <Link
+            href={link}
+            target="_blank"
+            className="hover:underline underline-offset-2"
+          >
+            <h2 className="my-2 w-full text-left text-3xl font-bold lg:text-2xl lg:truncate lg:text-ellipsis lg:w-[90%] sm:w-full">
+              {title}
+            </h2>
           </Link>
         ) : (
-          <h2 className="my-2 w-full text-left text-3xl font-bold lg:text-2xl">{title}</h2>
+          <h2 className="my-2 w-full text-left text-3xl font-bold lg:text-2xl">
+            {title}
+          </h2>
         )}
         <div className="w-full mt-2 flex items-center justify-between">
           {link ? (
-            <Link href={link} target="_blank" className="text-lg font-semibold underline md:text-base">
+            <Link
+              href={link}
+              target="_blank"
+              className="text-lg font-semibold underline md:text-base"
+            >
               Visit
             </Link>
           ) : (
-            <span className="text-lg font-semibold text-dark/40 dark:text-light/40 md:text-base">Private</span>
+            <span className="text-lg font-semibold text-dark/40 dark:text-light/40 md:text-base">
+              Private
+            </span>
           )}
           {github && (
             <Link href={github} className="w-8 md:w-6">
@@ -172,7 +225,10 @@ const Projects = () => {
         <meta property="og:description" content={PAGE_DESCRIPTION} />
         <meta property="og:site_name" content={SITE_NAME} />
         <meta property="og:image" content={SITE_OG_IMAGE} />
-        <meta property="og:image:alt" content="Flutter and mobile projects by Nguyen Duong Anh Huy" />
+        <meta
+          property="og:image:alt"
+          content="Flutter and mobile projects by Nguyen Duong Anh Huy"
+        />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content={getTwitterSite()} />
         <meta name="twitter:title" content={PAGE_TITLE} />

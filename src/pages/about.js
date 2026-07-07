@@ -34,9 +34,9 @@ const AnimatedNumbers = ({ val }) => {
 };
 
 const STATS = [
-  { val: 4, label: "Satisfied Clients", suffix: "k+" },
+  { val: 5, label: "Years Of Experience", suffix: "+" },
   { val: 10, label: "Projects Completed", suffix: "+" },
-  { val: 4, label: "Years Of Experience", suffix: "+" },
+  { val: 20, label: "New Sign-ups (Family Account)", suffix: "k+" },
 ];
 const PAGE_URL = `${SITE_URL}/about`;
 const PAGE_TITLE = `About Nguyen Duong Anh Huy | Flutter Clean Architecture`;
@@ -93,22 +93,22 @@ const About = () => {
           >
             <h2 className="mb-4 text-lg font-bold uppercase text-dark/75 dark:text-light/75">Bio</h2>
             <p className="font-medium">
-              As a passionate Software Engineer with over five years of experience
-              in designing, developing, and delivering scalable software solutions,
-              I am seeking a Solution Architect role where I can leverage my
-              technical expertise, system design knowledge, and leadership skills
-              to solve complex business challenges.
+              Mobile engineer with nearly 5 years of experience building and
+              shipping iOS/Android apps with Flutter, Swift, and React Native.
+              I own products end-to-end — from Figma design and API integration
+              to store release — with measurable impact.
             </p>
             <p className="my-4 font-medium">
-              I am passionate about continuously learning new technologies,
-              architectural patterns, and industry best practices. My commitment
-              to professional growth enables me to deliver high-quality solutions
-              that align with both technical and business objectives.
+              Recent highlights include cutting Danet app startup time by 60%,
+              building Family Account at Long Chau which drove ~20,000 new
+              sign-ups, and proposing + shipping Danet TV for Android TV gaining
+              1,000+ users in 3 weeks. I also mentor junior developers and
+              adopt AI-assisted workflows (MCP integrations, glab CLI automation).
             </p>
             <p className="font-medium">
               My strongest mobile work centers on Flutter, Dart, React Native,
-              clean architecture, reusable boilerplate foundations, and starter
-              project structures that help teams ship maintainable apps faster.
+              clean architecture, and scalable app structures that help teams
+              ship maintainable products faster.
             </p>
           </ScrollReveal>
 

@@ -1,7 +1,15 @@
 export const FEATURED_PROJECTS = [
   {
+    title: "Long Chau Pharmacy",
+    summary: "Large-scale pharmacy app (Flutter, Golang). Built Family Account feature driving ~20,000 new sign-ups via a co-marketing event with VnExpress.",
+    link: "https://apps.apple.com/vn/app/long-ch%C3%A2u-chuy%C3%AAn-gia-thu%E1%BB%91c/id1586071844?l=vi",
+    type: "Featured Project",
+    img: "/images/projects/longchau.png",
+    github: null,
+  },
+  {
     title: "Lend Me",
-    summary: "Pawn shop management app.",
+    summary: "Pawn shop management app (Flutter, Next.js, Node.js). Built UI from Figma, integrated PayOS payment, and deployed to both stores. Also built the LendMe Wiki website from scratch.",
     link: "https://app.lendme.vn/",
     type: "Featured Project",
     img: "/images/projects/lendme.png",
@@ -22,6 +30,13 @@ export const PROJECTS = [
     link: "https://apps.apple.com/vn/app/dshorts-drama-shorts/id6503342186",
     type: "Project",
     img: "/images/projects/dshorts.png",
+    github: null,
+  },
+  {
+    title: "Danet TV",
+    link: "https://play.google.com/store/apps/details?id=com.movideo.whitelabel&hl=vi",
+    type: "Project",
+    img: "/images/projects/danet.png",
     github: null,
   },
   {
